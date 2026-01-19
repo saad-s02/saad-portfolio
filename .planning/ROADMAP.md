@@ -16,6 +16,12 @@ This roadmap delivers a personal portfolio website with admin panel and automati
 
 **Requirements:** FOUND-01, FOUND-02, FOUND-03, FOUND-04, FOUND-05
 
+**Plans:** 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Initialize Next.js 16 + TypeScript and configure Tailwind v4
+- [ ] 01-02-PLAN.md — Initialize Convex backend and create dark-themed layout with navigation
+
 **Success Criteria:**
 1. Developer can run `npm run dev` and see Next.js app at localhost:3000
 2. Developer can run `npx convex dev` and interact with local Convex backend
@@ -32,6 +38,8 @@ This roadmap delivers a personal portfolio website with admin panel and automati
 **Dependencies:** Phase 1 (requires Next.js scaffold and Convex schema)
 
 **Requirements:** HOME-01, HOME-02, HOME-03, HOME-04, HOME-05, ABOUT-01, ABOUT-02, ABOUT-03, RESUME-01, RESUME-02, RESUME-03, RESUME-04, RESUME-05, PROJ-01, PROJ-02, PROJ-03, PROJ-04, PROJ-05, PROJ-06, PROJ-07, PROJ-08, PROJ-09, STACK-01, STACK-02, STACK-03
+
+**Plans:** 0 plans
 
 **Success Criteria:**
 1. Visitor can navigate to home page and see hero, highlights, featured projects, automation teaser, and contact CTA
@@ -51,6 +59,8 @@ This roadmap delivers a personal portfolio website with admin panel and automati
 
 **Requirements:** CONTACT-01, CONTACT-02, CONTACT-03, CONTACT-04, CONTACT-05, CONTACT-06, CONTACT-07, CONTACT-08
 
+**Plans:** 0 plans
+
 **Success Criteria:**
 1. Visitor can fill out contact form with name, email, and message fields
 2. Form validates input and shows error messages for invalid data
@@ -68,6 +78,8 @@ This roadmap delivers a personal portfolio website with admin panel and automati
 **Dependencies:** Phase 1 (requires Convex schema), Phase 2 (admin manages content that exists)
 
 **Requirements:** AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05, AUTH-06, ADMIN-01, ADMIN-02, ADMIN-03, ADMIN-04, ADMIN-05, ADMIN-06, ADMIN-07, ADMIN-08, ADMIN-09, ADMIN-10, ADMIN-11
+
+**Plans:** 0 plans
 
 **Success Criteria:**
 1. Only allowlisted email addresses can access `/admin/*` routes (unauthenticated users are redirected to login)
@@ -88,6 +100,8 @@ This roadmap delivers a personal portfolio website with admin panel and automati
 
 **Requirements:** DESIGN-01, DESIGN-02, DESIGN-03, DESIGN-04, DESIGN-05, DESIGN-06, DESIGN-07, DESIGN-08
 
+**Plans:** 0 plans
+
 **Success Criteria:**
 1. All pages use dark color scheme with high contrast text (4.5:1 minimum ratio)
 2. Page transitions between routes are smooth and use Framer Motion
@@ -105,6 +119,8 @@ This roadmap delivers a personal portfolio website with admin panel and automati
 **Dependencies:** Phase 1-5 (deploying complete site)
 
 **Requirements:** SEO-01, SEO-02, SEO-03, SEO-04, SEO-05, SEO-06, DEPLOY-01, DEPLOY-02, DEPLOY-03, DEPLOY-04, DEPLOY-05
+
+**Plans:** 0 plans
 
 **Success Criteria:**
 1. Every page has unique title and meta description visible in browser tab and search results
