@@ -23,18 +23,18 @@
 ## Current Position
 
 **Phase:** 2 of 6 (Public Content Pages)
-**Plan:** 01 of 06 (COMPLETE)
+**Plan:** 02 of 06 (COMPLETE)
 **Status:** Phase 2 in progress
-**Last activity:** 2026-01-19 - Completed 02-01-PLAN.md (Convex Queries & Framer Motion)
+**Last activity:** 2026-01-19 - Completed 02-02-PLAN.md (Build Home Page)
 
 **Progress:**
 ```
-[█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 11% (7/66 requirements)
+[██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 14% (9/66 requirements)
 ```
 
 **Phase Breakdown:**
 - Phase 1: Foundation (5 requirements) - 5/5 complete (100%) ✓
-- Phase 2: Public Content Pages (26 requirements) - 2/26 complete (8%)
+- Phase 2: Public Content Pages (26 requirements) - 4/26 complete (15%)
 - Phase 3: Contact Form (8 requirements) - Pending
 - Phase 4: Authentication & Admin Panel (17 requirements) - Pending
 - Phase 5: Design & Animations (8 requirements) - Pending
@@ -44,7 +44,7 @@
 
 ## Performance Metrics
 
-**Velocity:** 3 plans completed (18 min average)
+**Velocity:** 4 plans completed (16 min average)
 
 **Cycle Times:**
 - Planning → Execution: Immediate (autonomous plans)
@@ -52,6 +52,7 @@
 - Plan 01-01: 5 min (2 tasks)
 - Plan 01-02: 45 min (3 tasks + human verification)
 - Plan 02-01: 3 min (3 tasks, all auto)
+- Plan 02-02: 10 min (3 tasks + human verification)
 
 **Quality Indicators:**
 - Requirements coverage: 66/66 mapped (100%)
@@ -80,13 +81,18 @@
 | 2026-01-19 | Featured projects limited to top 3 with .take(3) | Home page only needs 3, reduces data transfer vs fetching all and slicing |
 | 2026-01-19 | Resume uses .first() pattern without index | Single-document table doesn't need index for simple retrieval |
 | 2026-01-19 | Framer Motion 12.27.0 for animations | Industry standard for React, excellent App Router support, whileInView for scroll reveals |
+| 2026-01-19 | Home page uses Server Component with preloadQuery | Featured projects need server rendering + client reactivity for real-time admin updates |
+| 2026-01-19 | Static home sections are Server Components | Hero, Highlights, Automation, CTA have no interactivity - reduces JS bundle size |
+| 2026-01-19 | Hero positioning emphasizes automation workflows | "Building automated workflows that ship faster" aligns with Stack/Automation differentiator |
+| 2026-01-19 | Automation teaser explicitly describes Claude Code workflow | Drives traffic to Stack page showing Issue → PR → Review → CI → Deploy → Changelog |
 
 ### Active Todos
 
 - [x] Complete 01-01-PLAN.md (Foundation Setup) - Done 2026-01-19
 - [x] Complete 01-02-PLAN.md (Convex Backend & Layout) - Done 2026-01-18
 - [x] Complete 02-01-PLAN.md (Convex Queries & Framer Motion) - Done 2026-01-19
-- [ ] Continue Phase 2 with page implementations - Next focus
+- [x] Complete 02-02-PLAN.md (Build Home Page) - Done 2026-01-19
+- [ ] Continue Phase 2 with About, Resume, Projects, Stack pages - Next focus
 
 ### Known Blockers
 
@@ -110,12 +116,13 @@ You're working on an automated personal portfolio website. The roadmap is comple
 **What Just Happened:**
 - Completed Phase 1 (Foundation) - 5/5 requirements ✓
 - Completed 02-01 (Convex Queries & Framer Motion) - 2/26 Phase 2 requirements ✓
-- Plan 02-01: Framer Motion installed, Convex query functions created (projects + resume)
-- 2 atomic commits created for 02-01 (612c8ab, 45cea62) + 1 external commit (d58fb23)
-- 3 SUMMARY.md files created documenting completion
+- Completed 02-02 (Build Home Page) - 4/26 Phase 2 requirements ✓
+- Plan 02-02: Created 5 home sections with Server+Client component pattern, Framer Motion animations
+- 3 atomic commits created for 02-02 (91d4358, 44010a5, 864da4d)
+- 4 SUMMARY.md files created documenting completion
 
 **What's Next:**
-Continue Phase 2 (Public Content Pages) - Build home, about, resume, projects, and stack pages using new query functions.
+Continue Phase 2 (Public Content Pages) - Build About, Resume, Projects index, and Stack pages.
 
 **Key Files:**
 - `.planning/PROJECT.md` - Core value and constraints
@@ -124,14 +131,22 @@ Continue Phase 2 (Public Content Pages) - Build home, about, resume, projects, a
 - `.planning/phases/01-foundation/01-01-SUMMARY.md` - Foundation setup results
 - `.planning/phases/01-foundation/01-02-SUMMARY.md` - Convex & layout results
 - `.planning/phases/02-public-content-pages/02-01-SUMMARY.md` - Queries & animations ready
+- `.planning/phases/02-public-content-pages/02-02-SUMMARY.md` - Home page complete with 5 sections
 - `convex/schema.ts` - Complete database schema with 4 tables and 5 indexes
 - `convex/projects.ts` - 3 query functions (listPublished, listFeatured, getBySlug)
 - `convex/resume.ts` - 1 query function (get)
 - `app/layout.tsx` - Dark-themed root layout with Convex provider
 - `components/navigation/Header.tsx` - Responsive navigation with active state
+- `app/page.tsx` - Home page with 5-section structure
+- `components/home/HeroSection.tsx` - Hero with positioning statement
+- `components/home/HighlightsSection.tsx` - 5 bullet highlights
+- `components/home/FeaturedProjects.tsx` - Animated featured projects grid
+- `components/home/AutomationTeaser.tsx` - Workflow teaser with Stack link
+- `components/home/ContactCTA.tsx` - Contact CTA section
+- `components/projects/ProjectCard.tsx` - Reusable animated card with Framer Motion
 
 **Last session:** 2026-01-19
-**Stopped at:** Completed 02-01-PLAN.md (Convex queries + Framer Motion)
+**Stopped at:** Completed 02-02-PLAN.md (Build Home Page)
 **Resume file:** None
 
 ---
