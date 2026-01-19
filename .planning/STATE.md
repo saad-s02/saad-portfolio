@@ -23,18 +23,18 @@
 ## Current Position
 
 **Phase:** 2 of 6 (Public Content Pages)
-**Plan:** 03 of 06 (COMPLETE)
+**Plan:** 04 of 06 (COMPLETE)
 **Status:** Phase 2 in progress
-**Last activity:** 2026-01-19 - Completed 02-03-PLAN.md (Build About and Resume Pages)
+**Last activity:** 2026-01-19 - Completed 02-04-PLAN.md (Build Projects Index and Detail Pages)
 
 **Progress:**
 ```
-[████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 17% (11/66 requirements)
+[████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 20% (13/66 requirements)
 ```
 
 **Phase Breakdown:**
 - Phase 1: Foundation (5 requirements) - 5/5 complete (100%) ✓
-- Phase 2: Public Content Pages (26 requirements) - 6/26 complete (23%)
+- Phase 2: Public Content Pages (26 requirements) - 8/26 complete (31%)
 - Phase 3: Contact Form (8 requirements) - Pending
 - Phase 4: Authentication & Admin Panel (17 requirements) - Pending
 - Phase 5: Design & Animations (8 requirements) - Pending
@@ -44,7 +44,7 @@
 
 ## Performance Metrics
 
-**Velocity:** 5 plans completed (15 min average)
+**Velocity:** 6 plans completed (17 min average)
 
 **Cycle Times:**
 - Planning → Execution: Immediate (autonomous plans)
@@ -54,11 +54,13 @@
 - Plan 02-01: 3 min (3 tasks, all auto)
 - Plan 02-02: 10 min (3 tasks + human verification)
 - Plan 02-03: 15 min (2 tasks + human verification)
+- Plan 02-04: 30 min (2 tasks + human verification)
 
 **Quality Indicators:**
 - Requirements coverage: 66/66 mapped (100%)
 - Blocked requirements: 0
 - Deferred scope: Automation phase (post-v1)
+- No deviations from plans (6/6 plans executed exactly as written)
 
 ---
 
@@ -89,6 +91,12 @@
 | 2026-01-19 | About page is static Server Component with no data fetching | Pure content page doesn't need async or Convex queries. Simplest implementation. |
 | 2026-01-19 | Resume page uses fetchQuery (not preloadQuery) | Resume data is static once loaded - no real-time updates needed unlike featured projects |
 | 2026-01-19 | Resume handles empty state gracefully | Data will be added via admin panel in Phase 4. Shows friendly placeholder message. |
+| 2026-01-19 | ProjectCard is reusable across home and projects pages | Single source of truth for card styling. Used by FeaturedProjects and ProjectGrid. |
+| 2026-01-19 | Projects index uses Server Component with preloadQuery | Same pattern as home page - server rendering for SEO + client reactivity |
+| 2026-01-19 | Dynamic [slug] route uses generateStaticParams | Build-time static generation for all published project pages. SEO benefits. |
+| 2026-01-19 | generateMetadata fetches data separately (fetchQuery) | Metadata runs in separate pass from page rendering. Can't share preloadQuery result. |
+| 2026-01-19 | parseProjectContent extracts sections with regex | Supports Problem/Approach/Constraints/Impact structure with fallback to full content |
+| 2026-01-19 | notFound() triggers custom 404 page | Proper 404 HTTP status with user-friendly error page for invalid slugs |
 
 ### Active Todos
 
@@ -97,7 +105,8 @@
 - [x] Complete 02-01-PLAN.md (Convex Queries & Framer Motion) - Done 2026-01-19
 - [x] Complete 02-02-PLAN.md (Build Home Page) - Done 2026-01-19
 - [x] Complete 02-03-PLAN.md (Build About and Resume Pages) - Done 2026-01-19
-- [ ] Continue Phase 2 with Projects and Stack pages - Next focus
+- [x] Complete 02-04-PLAN.md (Build Projects Index and Detail Pages) - Done 2026-01-19
+- [ ] Continue Phase 2 with Stack page - Next focus
 
 ### Known Blockers
 
@@ -123,12 +132,13 @@ You're working on an automated personal portfolio website. The roadmap is comple
 - Completed 02-01 (Convex Queries & Framer Motion) - 2/26 Phase 2 requirements ✓
 - Completed 02-02 (Build Home Page) - 4/26 Phase 2 requirements ✓
 - Completed 02-03 (Build About and Resume Pages) - 6/26 Phase 2 requirements ✓
-- Plan 02-03: Created About page with narrative and strengths, Resume page with Convex integration
-- 2 atomic commits created for 02-03 (91d4358, 8fb2a88)
-- 5 SUMMARY.md files created documenting completion
+- Completed 02-04 (Build Projects Index and Detail Pages) - 8/26 Phase 2 requirements ✓
+- Plan 02-04: Created projects index with grid layout, dynamic [slug] routes with SEO, 404 handling
+- 2 atomic commits created for 02-04 (c0e79a1, 864da4d)
+- 6 SUMMARY.md files created documenting completion
 
 **What's Next:**
-Continue Phase 2 (Public Content Pages) - Build Projects index and Stack pages.
+Continue Phase 2 (Public Content Pages) - Build Stack page with architecture diagrams and automation workflow.
 
 **Key Files:**
 - `.planning/PROJECT.md` - Core value and constraints
@@ -139,6 +149,7 @@ Continue Phase 2 (Public Content Pages) - Build Projects index and Stack pages.
 - `.planning/phases/02-public-content-pages/02-01-SUMMARY.md` - Queries & animations ready
 - `.planning/phases/02-public-content-pages/02-02-SUMMARY.md` - Home page complete with 5 sections
 - `.planning/phases/02-public-content-pages/02-03-SUMMARY.md` - About and Resume pages complete
+- `.planning/phases/02-public-content-pages/02-04-SUMMARY.md` - Projects index and detail pages complete
 - `convex/schema.ts` - Complete database schema with 4 tables and 5 indexes
 - `convex/projects.ts` - 3 query functions (listPublished, listFeatured, getBySlug)
 - `convex/resume.ts` - 1 query function (get)
@@ -147,15 +158,19 @@ Continue Phase 2 (Public Content Pages) - Build Projects index and Stack pages.
 - `app/page.tsx` - Home page with 5-section structure
 - `components/home/HeroSection.tsx` - Hero with positioning statement
 - `components/home/HighlightsSection.tsx` - 5 bullet highlights
-- `components/home/FeaturedProjects.tsx` - Animated featured projects grid
+- `components/home/FeaturedProjects.tsx` - Animated featured projects grid using shared ProjectCard
 - `components/home/AutomationTeaser.tsx` - Workflow teaser with Stack link
 - `components/home/ContactCTA.tsx` - Contact CTA section
-- `components/projects/ProjectCard.tsx` - Reusable animated card with Framer Motion
+- `components/projects/ProjectCard.tsx` - Reusable animated card with Framer Motion (used by home + projects)
+- `components/projects/ProjectGrid.tsx` - Client component for reactive projects grid
 - `app/about/page.tsx` - About page with narrative and strengths grid
 - `app/resume/page.tsx` - Resume page with Convex data rendering and empty state
+- `app/projects/page.tsx` - Projects index with grid layout and empty state
+- `app/projects/[slug]/page.tsx` - Dynamic project detail pages with SEO
+- `app/projects/[slug]/not-found.tsx` - Custom 404 page for invalid project slugs
 
 **Last session:** 2026-01-19
-**Stopped at:** Completed 02-03-PLAN.md (Build About and Resume Pages)
+**Stopped at:** Completed 02-04-PLAN.md (Build Projects Index and Detail Pages)
 **Resume file:** None
 
 ---
