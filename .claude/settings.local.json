@@ -3,7 +3,14 @@
     "allow": [
       "Skill(gsd:map-codebase)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "WebSearch",
+      "Bash(npm install:*)",
+      "Bash(timeout 10 bash -c \"npx convex dev 2>&1 | head -20\")",
+      "Bash(npm run build:*)",
+      "Bash(echo:*)",
+      "Bash(ls:*)",
+      "Bash(test:*)"
     ]
   }
 }
