@@ -39,7 +39,14 @@ Plans:
 
 **Requirements:** HOME-01, HOME-02, HOME-03, HOME-04, HOME-05, ABOUT-01, ABOUT-02, ABOUT-03, RESUME-01, RESUME-02, RESUME-03, RESUME-04, RESUME-05, PROJ-01, PROJ-02, PROJ-03, PROJ-04, PROJ-05, PROJ-06, PROJ-07, PROJ-08, PROJ-09, STACK-01, STACK-02, STACK-03
 
-**Plans:** 0 plans
+**Plans:** 5 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Install Framer Motion and create Convex query functions
+- [ ] 02-02-PLAN.md — Build home page with hero, highlights, featured projects, automation teaser, and contact CTA
+- [ ] 02-03-PLAN.md — Build About and Resume pages
+- [ ] 02-04-PLAN.md — Build projects index and dynamic detail pages
+- [ ] 02-05-PLAN.md — Build Stack/Automation page with architecture and pipeline diagrams
 
 **Success Criteria:**
 1. Visitor can navigate to home page and see hero, highlights, featured projects, automation teaser, and contact CTA
@@ -163,4 +170,4 @@ Automation phase (Claude Code slash commands, GitHub Actions review bot, changel
 
 ---
 
-*Last updated: 2026-01-18*
+*Last updated: 2026-01-19*
