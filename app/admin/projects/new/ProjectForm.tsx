@@ -3,31 +3,33 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { projectSchema, type ProjectFormData } from "./schema";
-import { createProjectAction } from "./actions";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 export function ProjectForm() {
   const router = useRouter();
+  const createProject = useMutation(api.projects.create);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     control,
-  } = useForm<ProjectFormData>({
+  } = useForm({
     resolver: zodResolver(projectSchema),
     defaultValues: {
       title: "",
       slug: "",
       summary: "",
       content: "",
-      status: "draft",
+      status: "draft" as const,
       featured: false,
-      stack: [],
-      tags: [],
+      stack: "",
+      tags: "",
       links: [],
-      screenshots: [],
+      screenshots: "",
     },
   });
 
@@ -36,27 +38,9 @@ export function ProjectForm() {
     name: "links",
   });
 
-  const onSubmit = async (data: ProjectFormData) => {
+  const onSubmit = async (data: any) => {
     try {
-      // Parse comma-separated strings into arrays
-      const stackInput = (data.stack as unknown as string);
-      const tagsInput = (data.tags as unknown as string);
-      const screenshotsInput = (data.screenshots as unknown as string);
-
-      const formattedData: ProjectFormData = {
-        ...data,
-        stack: typeof stackInput === 'string'
-          ? stackInput.split(',').map(s => s.trim()).filter(Boolean)
-          : data.stack,
-        tags: typeof tagsInput === 'string'
-          ? tagsInput.split(',').map(s => s.trim()).filter(Boolean)
-          : data.tags,
-        screenshots: typeof screenshotsInput === 'string'
-          ? screenshotsInput.split('\n').map(s => s.trim()).filter(Boolean)
-          : data.screenshots,
-      };
-
-      await createProjectAction(formattedData);
+      await createProject(data);
       toast.success("Project created successfully");
       router.push("/admin/projects");
     } catch (error) {

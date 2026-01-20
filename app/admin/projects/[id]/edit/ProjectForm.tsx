@@ -2,10 +2,11 @@
 
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { projectSchema, type ProjectFormData } from "../../new/schema";
-import { updateProjectAction } from "./actions";
+import { editProjectSchema, type EditProjectFormData } from "./schema";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 
 interface ProjectFormProps {
@@ -26,16 +27,26 @@ interface ProjectFormProps {
 
 export function ProjectForm({ projectId, initialData }: ProjectFormProps) {
   const router = useRouter();
+  const updateProject = useMutation(api.projects.update);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     control,
-  } = useForm<ProjectFormData>({
-    resolver: zodResolver(projectSchema),
+  } = useForm({
+    resolver: zodResolver(editProjectSchema),
     defaultValues: {
-      ...initialData,
+      title: initialData.title,
+      slug: initialData.slug,
+      summary: initialData.summary,
+      content: initialData.content,
+      status: initialData.status,
+      featured: initialData.featured,
+      stack: initialData.stack.join(', '),
+      tags: initialData.tags.join(', '),
+      links: initialData.links,
+      screenshots: initialData.screenshots.join('\n'),
     },
   });
 
@@ -44,27 +55,12 @@ export function ProjectForm({ projectId, initialData }: ProjectFormProps) {
     name: "links",
   });
 
-  const onSubmit = async (data: ProjectFormData) => {
+  const onSubmit = async (data: EditProjectFormData) => {
     try {
-      // Parse comma-separated strings into arrays if they're strings
-      const stackInput = (data.stack as unknown as string);
-      const tagsInput = (data.tags as unknown as string);
-      const screenshotsInput = (data.screenshots as unknown as string);
-
-      const formattedData: ProjectFormData = {
+      await updateProject({
+        id: projectId,
         ...data,
-        stack: typeof stackInput === 'string'
-          ? stackInput.split(',').map(s => s.trim()).filter(Boolean)
-          : data.stack,
-        tags: typeof tagsInput === 'string'
-          ? tagsInput.split(',').map(s => s.trim()).filter(Boolean)
-          : data.tags,
-        screenshots: typeof screenshotsInput === 'string'
-          ? screenshotsInput.split('\n').map(s => s.trim()).filter(Boolean)
-          : data.screenshots,
-      };
-
-      await updateProjectAction(projectId, formattedData);
+      });
       toast.success("Project updated successfully");
       router.push("/admin/projects");
     } catch (error) {
@@ -196,7 +192,6 @@ export function ProjectForm({ projectId, initialData }: ProjectFormProps) {
           rows={2}
           {...register("stack" as any)}
           disabled={isSubmitting}
-          defaultValue={initialData.stack.join(', ')}
           className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-y"
           placeholder="Next.js, TypeScript, Tailwind CSS"
         />
@@ -218,7 +213,6 @@ export function ProjectForm({ projectId, initialData }: ProjectFormProps) {
           rows={2}
           {...register("tags" as any)}
           disabled={isSubmitting}
-          defaultValue={initialData.tags.join(', ')}
           className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-y"
           placeholder="web, automation, ai"
         />
@@ -296,7 +290,6 @@ export function ProjectForm({ projectId, initialData }: ProjectFormProps) {
           rows={3}
           {...register("screenshots" as any)}
           disabled={isSubmitting}
-          defaultValue={initialData.screenshots.join('\n')}
           className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-y"
           placeholder="https://example.com/screenshot1.png"
         />
