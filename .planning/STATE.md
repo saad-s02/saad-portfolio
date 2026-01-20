@@ -1,7 +1,7 @@
 # Project State: Automated Personal Portfolio Website
 
 **Last Updated:** 2026-01-20
-**Status:** In Progress - Phase 3 (Contact Form)
+**Status:** In Progress - Phase 4 (Authentication & Admin Panel)
 
 ---
 
@@ -9,7 +9,7 @@
 
 **Core Value:** Stack/Automation page demonstrating automated workflow (Issue → Claude PR → Review → CI → Merge → Deploy → Changelog) is the key differentiator
 
-**Current Focus:** Phase 3 Contact Form - Plans 01-02 complete, backend with 4-layer spam defense ready
+**Current Focus:** Phase 4 Authentication & Admin Panel - Plan 02 complete, admin mutations with auth verification ready
 
 **Key Constraints:**
 - Privacy: No client names or sensitive metrics in public content
@@ -22,21 +22,21 @@
 
 ## Current Position
 
-**Phase:** 3 of 6 (Contact Form)
-**Plan:** 02 of 03 (COMPLETE)
-**Status:** Phase 3 in progress
-**Last activity:** 2026-01-20 - Completed 03-02-PLAN.md (Contact Form Backend)
+**Phase:** 4 of 6 (Authentication & Admin Panel)
+**Plan:** 02 of 05 (COMPLETE)
+**Status:** Phase 4 in progress
+**Last activity:** 2026-01-20 - Completed 04-02-PLAN.md (Admin Mutations)
 
 **Progress:**
 ```
-[████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░] 36% (24/66 requirements)
+[█████████████░░░░░░░░░░░░░░░░░░░░░░░░░░] 38% (25/66 requirements)
 ```
 
 **Phase Breakdown:**
 - Phase 1: Foundation (5 requirements) - 5/5 complete (100%) ✓
 - Phase 2: Public Content Pages (26 requirements) - 9/26 complete (35%)
 - Phase 3: Contact Form (8 requirements) - 8/8 complete (100%) ✓
-- Phase 4: Authentication & Admin Panel (17 requirements) - Pending
+- Phase 4: Authentication & Admin Panel (17 requirements) - 1/17 complete (6%)
 - Phase 5: Design & Animations (8 requirements) - Pending
 - Phase 6: SEO & Deployment (11 requirements) - Pending
 
@@ -44,7 +44,7 @@
 
 ## Performance Metrics
 
-**Velocity:** 9 plans completed (13 min average)
+**Velocity:** 10 plans completed (11 min average)
 
 **Cycle Times:**
 - Planning → Execution: Immediate (autonomous plans)
@@ -58,12 +58,13 @@
 - Plan 02-05: 15 min (1 task + human verification)
 - Plan 03-01: 3 min (3 tasks, all auto)
 - Plan 03-02: 5 min (3 tasks + human verification)
+- Plan 04-02: 4 min (3 tasks, all auto)
 
 **Quality Indicators:**
 - Requirements coverage: 66/66 mapped (100%)
 - Blocked requirements: 0
 - Deferred scope: Automation phase (post-v1)
-- No deviations from plans (9/9 plans executed exactly as written)
+- No deviations from plans (10/10 plans executed exactly as written)
 
 ---
 
@@ -111,6 +112,10 @@
 | 2026-01-20 | Honeypot returns fake success to avoid alerting bots | Silent success prevents bots from learning they were caught and adapting detection avoidance strategies. |
 | 2026-01-20 | Rate limit key is 'anonymous' (not IP-based) for v1 | Convex mutations don't have direct IP access. Global limit acceptable for v1. Post-v1 enhancement: IP-based via middleware. |
 | 2026-01-20 | ConvexError for application errors, generic for system errors | ConvexError messages are controlled/safe to show. System errors might leak sensitive details - use generic message. |
+| 2026-01-20 | All admin mutations verify ctx.auth.getUserIdentity() for defense-in-depth | Middleware can be bypassed (CVE-2025-29927). Always verify auth at data access layer in Convex mutations. |
+| 2026-01-20 | Resume update mutation uses upsert pattern | Single-document table needs upsert: check if exists with .first(), patch or insert accordingly. |
+| 2026-01-20 | Admin queries use listAll naming convention | Distinguishes from public queries (listPublished, listFeatured). Makes clear which return sensitive data. |
+| 2026-01-20 | Quick toggle mutations for common admin actions | Separate updateStatus, updateFeatured, updateVisibility mutations enable optimistic UI updates with smaller payloads. |
 
 ### Active Todos
 
@@ -123,7 +128,8 @@
 - [x] Complete 02-05-PLAN.md (Build Stack/Automation Page) - Done 2026-01-19
 - [x] Complete 03-01-PLAN.md (Contact Form UI with Validation) - Done 2026-01-20
 - [x] Complete 03-02-PLAN.md (Contact Form Backend) - Done 2026-01-20
-- [ ] Phase 3 Complete - Move to Phase 4 (Authentication & Admin Panel)
+- [x] Phase 3 Complete - Move to Phase 4 (Authentication & Admin Panel)
+- [x] Complete 04-02-PLAN.md (Admin Mutations) - Done 2026-01-20
 
 ### Known Blockers
 
@@ -148,13 +154,14 @@ You're working on an automated personal portfolio website. The roadmap is comple
 - Completed Phase 1 (Foundation) - 5/5 requirements ✓
 - Completed Phase 2 Plans 01-05 - 9/26 Phase 2 requirements ✓
 - Completed Phase 3 (Contact Form) - 8/8 requirements ✓
-- Plan 03-01: Built contact form UI with React Hook Form, Zod validation, honeypot field, toast notifications
-- Plan 03-02: Built backend with 4-layer spam defense (honeypot, rate limiting, validation, persistence)
-- 6 atomic commits created (3 for 03-01, 3 for 03-02)
-- 9 SUMMARY.md files created documenting completion
+- Started Phase 4 (Authentication & Admin Panel)
+- Plan 04-02: Built admin mutations for all tables (projects, resume, changelog, contact submissions)
+- Created 11 admin operations with authentication verification
+- 3 atomic commits created (projects, resume, changelog+contact submissions)
+- 10 SUMMARY.md files created documenting completion
 
 **What's Next:**
-Phase 4 (Authentication & Admin Panel) - WorkOS AuthKit integration and admin dashboard for content management.
+Continue Phase 4 - WorkOS AuthKit integration (04-01), admin UI layout (04-03), admin forms (04-04), middleware protection (04-05).
 
 **Key Files:**
 - `.planning/PROJECT.md` - Core value and constraints
@@ -169,12 +176,15 @@ Phase 4 (Authentication & Admin Panel) - WorkOS AuthKit integration and admin da
 - `.planning/phases/02-public-content-pages/02-05-SUMMARY.md` - Stack/Automation page complete
 - `.planning/phases/03-contact-form/03-01-SUMMARY.md` - Contact form UI with validation complete
 - `.planning/phases/03-contact-form/03-02-SUMMARY.md` - Contact form backend with 4-layer spam defense complete
+- `.planning/phases/04-authentication---admin-panel/04-02-SUMMARY.md` - Admin mutations with auth verification complete
 - `convex/schema.ts` - Complete database schema with 4 tables and 5 indexes
 - `lib/validations/contact.ts` - Zod schema for contact form validation
 - `convex/convex.config.ts` - Convex app configuration with rate limiter registration
 - `convex/contact.ts` - Contact submission mutation with honeypot, rate limiting, validation
-- `convex/projects.ts` - 3 query functions (listPublished, listFeatured, getBySlug)
-- `convex/resume.ts` - 1 query function (get)
+- `convex/projects.ts` - 3 public queries + 6 admin mutations (listAll, create, update, remove, updateStatus, updateFeatured)
+- `convex/resume.ts` - 1 public query + 1 admin mutation (update with upsert)
+- `convex/changelog.ts` - 2 admin operations (listAll, updateVisibility)
+- `convex/contactSubmissions.ts` - 2 admin operations (listAll, updateStatus)
 - `app/layout.tsx` - Dark-themed root layout with Convex provider
 - `components/navigation/Header.tsx` - Responsive navigation with active state
 - `app/page.tsx` - Home page with 5-section structure
@@ -196,7 +206,7 @@ Phase 4 (Authentication & Admin Panel) - WorkOS AuthKit integration and admin da
 - `app/layout.tsx` - Dark-themed root layout with Convex provider and Toaster
 
 **Last session:** 2026-01-20
-**Stopped at:** Completed 03-02-PLAN.md (Contact Form Backend) - Phase 3 Complete
+**Stopped at:** Completed 04-02-PLAN.md (Admin Mutations) - Phase 4 in progress
 **Resume file:** None
 
 ---
