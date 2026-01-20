@@ -8,7 +8,7 @@ export default authkitMiddleware({
       '/about',
       '/resume',
       '/projects',
-      '/projects/*',
+      '/projects/:path*',
       '/stack',
       '/contact',
     ],

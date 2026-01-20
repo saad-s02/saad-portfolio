@@ -8,7 +8,9 @@
  * @module
  */
 
+import type * as changelog from "../changelog.js";
 import type * as contact from "../contact.js";
+import type * as contactSubmissions from "../contactSubmissions.js";
 import type * as projects from "../projects.js";
 import type * as resume from "../resume.js";
 
@@ -19,7 +21,9 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  changelog: typeof changelog;
   contact: typeof contact;
+  contactSubmissions: typeof contactSubmissions;
   projects: typeof projects;
   resume: typeof resume;
 }>;
