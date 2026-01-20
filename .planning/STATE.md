@@ -23,20 +23,20 @@
 ## Current Position
 
 **Phase:** 4 of 6 (Authentication & Admin Panel)
-**Plan:** 02 of 05 (COMPLETE)
+**Plan:** 01 of 05 (COMPLETE)
 **Status:** Phase 4 in progress
-**Last activity:** 2026-01-20 - Completed 04-02-PLAN.md (Admin Mutations)
+**Last activity:** 2026-01-20 - Completed 04-01-PLAN.md (WorkOS AuthKit Integration)
 
 **Progress:**
 ```
-[█████████████░░░░░░░░░░░░░░░░░░░░░░░░░░] 38% (25/66 requirements)
+[██████████████░░░░░░░░░░░░░░░░░░░░░░░░░] 41% (27/66 requirements)
 ```
 
 **Phase Breakdown:**
 - Phase 1: Foundation (5 requirements) - 5/5 complete (100%) ✓
 - Phase 2: Public Content Pages (26 requirements) - 9/26 complete (35%)
 - Phase 3: Contact Form (8 requirements) - 8/8 complete (100%) ✓
-- Phase 4: Authentication & Admin Panel (17 requirements) - 1/17 complete (6%)
+- Phase 4: Authentication & Admin Panel (17 requirements) - 3/17 complete (18%)
 - Phase 5: Design & Animations (8 requirements) - Pending
 - Phase 6: SEO & Deployment (11 requirements) - Pending
 
@@ -44,7 +44,7 @@
 
 ## Performance Metrics
 
-**Velocity:** 10 plans completed (11 min average)
+**Velocity:** 11 plans completed (13 min average)
 
 **Cycle Times:**
 - Planning → Execution: Immediate (autonomous plans)
@@ -58,13 +58,14 @@
 - Plan 02-05: 15 min (1 task + human verification)
 - Plan 03-01: 3 min (3 tasks, all auto)
 - Plan 03-02: 5 min (3 tasks + human verification)
+- Plan 04-01: 45 min (5 tasks: 3 auto + 1 human-action + 1 human-verify)
 - Plan 04-02: 4 min (3 tasks, all auto)
 
 **Quality Indicators:**
 - Requirements coverage: 66/66 mapped (100%)
 - Blocked requirements: 0
 - Deferred scope: Automation phase (post-v1)
-- No deviations from plans (10/10 plans executed exactly as written)
+- Plans executed: 11/11 (1 auto-fix for Next.js 16 compatibility)
 
 ---
 
@@ -116,6 +117,10 @@
 | 2026-01-20 | Resume update mutation uses upsert pattern | Single-document table needs upsert: check if exists with .first(), patch or insert accordingly. |
 | 2026-01-20 | Admin queries use listAll naming convention | Distinguishes from public queries (listPublished, listFeatured). Makes clear which return sensitive data. |
 | 2026-01-20 | Quick toggle mutations for common admin actions | Separate updateStatus, updateFeatured, updateVisibility mutations enable optimistic UI updates with smaller payloads. |
+| 2026-01-20 | WorkOS AuthKit for admin authentication | Enterprise-grade auth with JWT custom claims for flexible email allowlist enforcement. More performant than database lookup. |
+| 2026-01-20 | Email allowlist enforced via JWT custom claims | Server-side allowlist check at token issuance. No database lookup needed for every auth check. |
+| 2026-01-20 | Two JWT issuers in auth.config.ts | WorkOS issues tokens with different issuer formats depending on authentication method. Both required. |
+| 2026-01-20 | proxy.ts instead of middleware.ts for Next.js 16 | Next.js 16 reserves middleware.ts for framework use. Renamed to proxy.ts to avoid conflicts. |
 
 ### Active Todos
 
@@ -129,6 +134,7 @@
 - [x] Complete 03-01-PLAN.md (Contact Form UI with Validation) - Done 2026-01-20
 - [x] Complete 03-02-PLAN.md (Contact Form Backend) - Done 2026-01-20
 - [x] Phase 3 Complete - Move to Phase 4 (Authentication & Admin Panel)
+- [x] Complete 04-01-PLAN.md (WorkOS AuthKit Integration) - Done 2026-01-20
 - [x] Complete 04-02-PLAN.md (Admin Mutations) - Done 2026-01-20
 
 ### Known Blockers
@@ -154,14 +160,15 @@ You're working on an automated personal portfolio website. The roadmap is comple
 - Completed Phase 1 (Foundation) - 5/5 requirements ✓
 - Completed Phase 2 Plans 01-05 - 9/26 Phase 2 requirements ✓
 - Completed Phase 3 (Contact Form) - 8/8 requirements ✓
-- Started Phase 4 (Authentication & Admin Panel)
-- Plan 04-02: Built admin mutations for all tables (projects, resume, changelog, contact submissions)
-- Created 11 admin operations with authentication verification
-- 3 atomic commits created (projects, resume, changelog+contact submissions)
-- 10 SUMMARY.md files created documenting completion
+- Phase 4 in progress (Authentication & Admin Panel)
+- Plan 04-01: Integrated WorkOS AuthKit with email allowlist enforcement
+- Plan 04-02: Built admin mutations for all tables with auth verification
+- WorkOS auth flow tested and verified (sign-in, callback, session persistence, sign-out)
+- 4 auth-related commits + 1 fix for Next.js 16 compatibility
+- 11 SUMMARY.md files created documenting completion
 
 **What's Next:**
-Continue Phase 4 - WorkOS AuthKit integration (04-01), admin UI layout (04-03), admin forms (04-04), middleware protection (04-05).
+Continue Phase 4 - Admin UI layout (04-03), admin forms (04-04), middleware refinements (04-05).
 
 **Key Files:**
 - `.planning/PROJECT.md` - Core value and constraints
@@ -176,16 +183,23 @@ Continue Phase 4 - WorkOS AuthKit integration (04-01), admin UI layout (04-03), 
 - `.planning/phases/02-public-content-pages/02-05-SUMMARY.md` - Stack/Automation page complete
 - `.planning/phases/03-contact-form/03-01-SUMMARY.md` - Contact form UI with validation complete
 - `.planning/phases/03-contact-form/03-02-SUMMARY.md` - Contact form backend with 4-layer spam defense complete
+- `.planning/phases/04-authentication---admin-panel/04-01-SUMMARY.md` - WorkOS AuthKit integration complete
 - `.planning/phases/04-authentication---admin-panel/04-02-SUMMARY.md` - Admin mutations with auth verification complete
 - `convex/schema.ts` - Complete database schema with 4 tables and 5 indexes
 - `lib/validations/contact.ts` - Zod schema for contact form validation
 - `convex/convex.config.ts` - Convex app configuration with rate limiter registration
 - `convex/contact.ts` - Contact submission mutation with honeypot, rate limiting, validation
+- `convex/auth.config.ts` - WorkOS JWT validation with dual issuer configuration
 - `convex/projects.ts` - 3 public queries + 6 admin mutations (listAll, create, update, remove, updateStatus, updateFeatured)
 - `convex/resume.ts` - 1 public query + 1 admin mutation (update with upsert)
 - `convex/changelog.ts` - 2 admin operations (listAll, updateVisibility)
 - `convex/contactSubmissions.ts` - 2 admin operations (listAll, updateStatus)
-- `app/layout.tsx` - Dark-themed root layout with Convex provider
+- `proxy.ts` - Middleware protecting /admin/* routes with WorkOS authkitMiddleware
+- `app/auth/callback/route.ts` - OAuth callback handler
+- `app/auth/sign-in/route.ts` - Sign-in redirect handler
+- `app/auth/sign-out/route.ts` - Sign-out handler
+- `app/layout.tsx` - Dark-themed root layout with Convex provider and Toaster
+- `app/ConvexClientProvider.tsx` - AuthKitProvider + ConvexProviderWithAuth bridge for WorkOS auth
 - `components/navigation/Header.tsx` - Responsive navigation with active state
 - `app/page.tsx` - Home page with 5-section structure
 - `components/home/HeroSection.tsx` - Hero with positioning statement
@@ -203,10 +217,9 @@ Continue Phase 4 - WorkOS AuthKit integration (04-01), admin UI layout (04-03), 
 - `app/stack/page.tsx` - Stack/Automation page with architecture diagram and automation pipeline (203 lines)
 - `components/contact/ContactForm.tsx` - Contact form with React Hook Form and validation (137 lines)
 - `app/contact/page.tsx` - Contact page with form and email fallback
-- `app/layout.tsx` - Dark-themed root layout with Convex provider and Toaster
 
 **Last session:** 2026-01-20
-**Stopped at:** Completed 04-02-PLAN.md (Admin Mutations) - Phase 4 in progress
+**Stopped at:** Completed 04-01-PLAN.md (WorkOS AuthKit Integration) - Phase 4 in progress
 **Resume file:** None
 
 ---
