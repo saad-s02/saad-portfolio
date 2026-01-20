@@ -1,17 +1,19 @@
 "use client";
 
+import { use } from "react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { ProjectForm } from "./ProjectForm";
 import { Id } from "@/convex/_generated/dataModel";
 
 interface EditProjectPageProps {
-  params: {
-    id: Id<"projects">;
-  };
+  params: Promise<{
+    id: string;
+  }>;
 }
 
 export default function EditProjectPage({ params }: EditProjectPageProps) {
+  const { id } = use(params);
   const projects = useQuery(api.projects.listAll);
 
   if (projects === undefined) {
@@ -22,7 +24,9 @@ export default function EditProjectPage({ params }: EditProjectPageProps) {
     );
   }
 
-  const project = projects.find((p) => p._id === params.id);
+  // Cast string ID from URL to Convex Id type
+  const projectId = id as Id<"projects">;
+  const project = projects.find((p) => p._id === projectId);
 
   if (!project) {
     return (

@@ -22,16 +22,39 @@ export const projectSchema = z.object({
   status: z.enum(["draft", "published"]),
   featured: z.boolean(),
   stack: z
-    .array(z.string())
-    .min(1, "At least one technology is required"),
-  tags: z.array(z.string()),
+    .union([
+      z.string().transform((val) =>
+        val.split(',').map(s => s.trim()).filter(Boolean)
+      ),
+      z.array(z.string())
+    ])
+    .refine((val) => Array.isArray(val) && val.length > 0, {
+      message: "At least one technology is required"
+    }),
+  tags: z
+    .union([
+      z.string().transform((val) =>
+        val.split(',').map(s => s.trim()).filter(Boolean)
+      ),
+      z.array(z.string())
+    ])
+    .optional()
+    .default([]),
   links: z.array(
     z.object({
       label: z.string().min(1, "Link label is required"),
       url: z.string().url("Link URL must be valid"),
     })
   ),
-  screenshots: z.array(z.string().url("Screenshot URL must be valid")),
+  screenshots: z
+    .union([
+      z.string().transform((val) =>
+        val.split('\n').map(s => s.trim()).filter(Boolean)
+      ),
+      z.array(z.string())
+    ])
+    .optional()
+    .default([]),
 });
 
 export type ProjectFormData = z.infer<typeof projectSchema>;
