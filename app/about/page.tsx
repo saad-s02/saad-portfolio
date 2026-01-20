@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "About | Saad Shaikh",
+  title: "About | Saad Siddiqui",
   description: "Background, approach, and strengths in full-stack development and automation",
 };
 

@@ -2,7 +2,7 @@ export function HeroSection() {
   return (
     <section className="min-h-[60vh] flex flex-col justify-center">
       <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-50">
-        Saad Shaikh
+        Saad Siddiqui
       </h1>
       <p className="text-2xl md:text-3xl text-gray-400 mb-4">
         Full-Stack Engineer

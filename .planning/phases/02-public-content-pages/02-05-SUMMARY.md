@@ -84,7 +84,7 @@ Each task was committed atomically:
 
 1. **Task 1: Build Stack/Automation page with diagrams and explanation** - `c0e79a1` (feat)
    - Updated app/stack/page.tsx from placeholder to complete 203-line implementation
-   - Added SEO metadata (title: "Stack & Automation | Saad Shaikh", description)
+   - Added SEO metadata (title: "Stack & Automation | Saad Siddiqui", description)
    - Implemented page header with title and introduction paragraph
    - **Architecture Diagram Section:**
      - 3-column responsive grid (grid-cols-1 md:grid-cols-3)

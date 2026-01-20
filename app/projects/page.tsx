@@ -4,7 +4,7 @@ import { api } from "@/convex/_generated/api";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 
 export const metadata = {
-  title: "Projects | Saad Shaikh",
+  title: "Projects | Saad Siddiqui",
   description: "Portfolio of web applications, automation workflows, and engineering projects",
 };
 

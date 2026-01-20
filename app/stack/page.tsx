@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Stack & Automation | Saad Shaikh",
+  title: "Stack & Automation | Saad Siddiqui",
   description: "Technical architecture and automated development workflow using Claude Code, GitHub Actions, and CI/CD",
 };
 

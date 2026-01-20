@@ -2,7 +2,7 @@ import { fetchQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 
 export const metadata = {
-  title: "Resume | Saad Shaikh",
+  title: "Resume | Saad Siddiqui",
   description: "Professional experience, skills, education, and highlights",
 };
 

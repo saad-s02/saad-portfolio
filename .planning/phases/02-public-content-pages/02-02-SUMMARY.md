@@ -163,7 +163,7 @@ The user verified and approved the checkpoint with components in place but app/p
 ## Content & Design Highlights
 
 **Hero Section:**
-- Name: "Saad Shaikh"
+- Name: "Saad Siddiqui"
 - Role: "Full-Stack Engineer"
 - Positioning: "Building automated workflows that ship faster and scale confidently. Specializing in Next.js, TypeScript, and AI-assisted development."
 
