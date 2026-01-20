@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as contact from "../contact.js";
 import type * as projects from "../projects.js";
 import type * as resume from "../resume.js";
 
@@ -18,6 +19,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  contact: typeof contact;
   projects: typeof projects;
   resume: typeof resume;
 }>;
