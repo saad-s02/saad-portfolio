@@ -23,20 +23,20 @@
 ## Current Position
 
 **Phase:** 4 of 6 (Authentication & Admin Panel)
-**Plan:** 01 of 05 (COMPLETE)
+**Plan:** 03 of 05 (COMPLETE)
 **Status:** Phase 4 in progress
-**Last activity:** 2026-01-20 - Completed 04-01-PLAN.md (WorkOS AuthKit Integration)
+**Last activity:** 2026-01-20 - Completed 04-03-PLAN.md (Admin Layout & Dashboard)
 
 **Progress:**
 ```
-[██████████████░░░░░░░░░░░░░░░░░░░░░░░░░] 41% (27/66 requirements)
+[███████████████░░░░░░░░░░░░░░░░░░░░░░░░] 45% (30/66 requirements)
 ```
 
 **Phase Breakdown:**
 - Phase 1: Foundation (5 requirements) - 5/5 complete (100%) ✓
 - Phase 2: Public Content Pages (26 requirements) - 9/26 complete (35%)
 - Phase 3: Contact Form (8 requirements) - 8/8 complete (100%) ✓
-- Phase 4: Authentication & Admin Panel (17 requirements) - 3/17 complete (18%)
+- Phase 4: Authentication & Admin Panel (17 requirements) - 6/17 complete (35%)
 - Phase 5: Design & Animations (8 requirements) - Pending
 - Phase 6: SEO & Deployment (11 requirements) - Pending
 
@@ -44,7 +44,7 @@
 
 ## Performance Metrics
 
-**Velocity:** 11 plans completed (13 min average)
+**Velocity:** 12 plans completed (15 min average)
 
 **Cycle Times:**
 - Planning → Execution: Immediate (autonomous plans)
@@ -60,12 +60,13 @@
 - Plan 03-02: 5 min (3 tasks + human verification)
 - Plan 04-01: 45 min (5 tasks: 3 auto + 1 human-action + 1 human-verify)
 - Plan 04-02: 4 min (3 tasks, all auto)
+- Plan 04-03: 45 min (2 tasks + 1 human-verify checkpoint + orchestrator fix)
 
 **Quality Indicators:**
 - Requirements coverage: 66/66 mapped (100%)
 - Blocked requirements: 0
 - Deferred scope: Automation phase (post-v1)
-- Plans executed: 11/11 (1 auto-fix for Next.js 16 compatibility)
+- Plans executed: 12/12 (1 auto-fix for Next.js 16 compatibility, 1 orchestrator auth config fix)
 
 ---
 
@@ -121,6 +122,9 @@
 | 2026-01-20 | Email allowlist enforced via JWT custom claims | Server-side allowlist check at token issuance. No database lookup needed for every auth check. |
 | 2026-01-20 | Two JWT issuers in auth.config.ts | WorkOS issues tokens with different issuer formats depending on authentication method. Both required. |
 | 2026-01-20 | proxy.ts instead of middleware.ts for Next.js 16 | Next.js 16 reserves middleware.ts for framework use. Renamed to proxy.ts to avoid conflicts. |
+| 2026-01-20 | Admin layout performs second auth check with withAuth() | Defense-in-depth: middleware can be bypassed. Layout-level check provides second auth barrier for /admin/* routes. |
+| 2026-01-20 | Dashboard is client component using Convex reactive queries | Real-time stats need useQuery hooks. Client component enables reactive updates as content changes. |
+| 2026-01-20 | Simplified Convex auth config to single issuer | Complex dual issuer pattern was causing auth failures. Single domain string matches WorkOS AuthKit patterns. |
 
 ### Active Todos
 
@@ -136,6 +140,7 @@
 - [x] Phase 3 Complete - Move to Phase 4 (Authentication & Admin Panel)
 - [x] Complete 04-01-PLAN.md (WorkOS AuthKit Integration) - Done 2026-01-20
 - [x] Complete 04-02-PLAN.md (Admin Mutations) - Done 2026-01-20
+- [x] Complete 04-03-PLAN.md (Admin Layout & Dashboard) - Done 2026-01-20
 
 ### Known Blockers
 
@@ -163,12 +168,15 @@ You're working on an automated personal portfolio website. The roadmap is comple
 - Phase 4 in progress (Authentication & Admin Panel)
 - Plan 04-01: Integrated WorkOS AuthKit with email allowlist enforcement
 - Plan 04-02: Built admin mutations for all tables with auth verification
-- WorkOS auth flow tested and verified (sign-in, callback, session persistence, sign-out)
-- 4 auth-related commits + 1 fix for Next.js 16 compatibility
-- 11 SUMMARY.md files created documenting completion
+- Plan 04-03: Created admin layout with dashboard and navigation (2 tasks + 1 orchestrator auth config fix)
+- Admin dashboard shows portfolio stats (projects, featured, contact submissions)
+- Layout performs second auth check with withAuth() for defense-in-depth
+- Real-time Convex queries working with reactive stats updates
+- User verified admin interface working correctly (layout, dashboard, navigation, auth)
+- 12 SUMMARY.md files created documenting completion
 
 **What's Next:**
-Continue Phase 4 - Admin UI layout (04-03), admin forms (04-04), middleware refinements (04-05).
+Continue Phase 4 - Admin forms for Projects/Resume/Changelog/Contact (04-04), middleware refinements if needed (04-05).
 
 **Key Files:**
 - `.planning/PROJECT.md` - Core value and constraints
@@ -185,6 +193,7 @@ Continue Phase 4 - Admin UI layout (04-03), admin forms (04-04), middleware refi
 - `.planning/phases/03-contact-form/03-02-SUMMARY.md` - Contact form backend with 4-layer spam defense complete
 - `.planning/phases/04-authentication---admin-panel/04-01-SUMMARY.md` - WorkOS AuthKit integration complete
 - `.planning/phases/04-authentication---admin-panel/04-02-SUMMARY.md` - Admin mutations with auth verification complete
+- `.planning/phases/04-authentication---admin-panel/04-03-SUMMARY.md` - Admin layout and dashboard complete
 - `convex/schema.ts` - Complete database schema with 4 tables and 5 indexes
 - `lib/validations/contact.ts` - Zod schema for contact form validation
 - `convex/convex.config.ts` - Convex app configuration with rate limiter registration
@@ -200,6 +209,8 @@ Continue Phase 4 - Admin UI layout (04-03), admin forms (04-04), middleware refi
 - `app/auth/sign-out/route.ts` - Sign-out handler
 - `app/layout.tsx` - Dark-themed root layout with Convex provider and Toaster
 - `app/ConvexClientProvider.tsx` - AuthKitProvider + ConvexProviderWithAuth bridge for WorkOS auth
+- `app/admin/layout.tsx` - Admin shell with auth check, sidebar navigation, user info display (82 lines)
+- `app/admin/page.tsx` - Admin dashboard with portfolio stats and quick actions (109 lines)
 - `components/navigation/Header.tsx` - Responsive navigation with active state
 - `app/page.tsx` - Home page with 5-section structure
 - `components/home/HeroSection.tsx` - Hero with positioning statement
@@ -219,7 +230,7 @@ Continue Phase 4 - Admin UI layout (04-03), admin forms (04-04), middleware refi
 - `app/contact/page.tsx` - Contact page with form and email fallback
 
 **Last session:** 2026-01-20
-**Stopped at:** Completed 04-01-PLAN.md (WorkOS AuthKit Integration) - Phase 4 in progress
+**Stopped at:** Completed 04-03-PLAN.md (Admin Layout & Dashboard) - Phase 4 in progress
 **Resume file:** None
 
 ---
