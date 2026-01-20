@@ -1,7 +1,7 @@
 # Project State: Automated Personal Portfolio Website
 
-**Last Updated:** 2026-01-19
-**Status:** In Progress - Phase 2 (Public Content Pages)
+**Last Updated:** 2026-01-20
+**Status:** In Progress - Phase 3 (Contact Form)
 
 ---
 
@@ -9,7 +9,7 @@
 
 **Core Value:** Stack/Automation page demonstrating automated workflow (Issue → Claude PR → Review → CI → Merge → Deploy → Changelog) is the key differentiator
 
-**Current Focus:** Phase 2 Public Content Pages - Plan 01 complete, Convex queries and Framer Motion ready
+**Current Focus:** Phase 3 Contact Form - Plans 01-02 complete, backend with 4-layer spam defense ready
 
 **Key Constraints:**
 - Privacy: No client names or sensitive metrics in public content
@@ -22,20 +22,20 @@
 
 ## Current Position
 
-**Phase:** 2 of 6 (Public Content Pages)
-**Plan:** 05 of 06 (COMPLETE)
-**Status:** Phase 2 in progress
-**Last activity:** 2026-01-19 - Completed 02-05-PLAN.md (Build Stack/Automation Page)
+**Phase:** 3 of 6 (Contact Form)
+**Plan:** 02 of 03 (COMPLETE)
+**Status:** Phase 3 in progress
+**Last activity:** 2026-01-20 - Completed 03-02-PLAN.md (Contact Form Backend)
 
 **Progress:**
 ```
-[█████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 21% (14/66 requirements)
+[████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░] 36% (24/66 requirements)
 ```
 
 **Phase Breakdown:**
 - Phase 1: Foundation (5 requirements) - 5/5 complete (100%) ✓
 - Phase 2: Public Content Pages (26 requirements) - 9/26 complete (35%)
-- Phase 3: Contact Form (8 requirements) - Pending
+- Phase 3: Contact Form (8 requirements) - 8/8 complete (100%) ✓
 - Phase 4: Authentication & Admin Panel (17 requirements) - Pending
 - Phase 5: Design & Animations (8 requirements) - Pending
 - Phase 6: SEO & Deployment (11 requirements) - Pending
@@ -44,7 +44,7 @@
 
 ## Performance Metrics
 
-**Velocity:** 7 plans completed (16 min average)
+**Velocity:** 9 plans completed (13 min average)
 
 **Cycle Times:**
 - Planning → Execution: Immediate (autonomous plans)
@@ -56,12 +56,14 @@
 - Plan 02-03: 15 min (2 tasks + human verification)
 - Plan 02-04: 30 min (2 tasks + human verification)
 - Plan 02-05: 15 min (1 task + human verification)
+- Plan 03-01: 3 min (3 tasks, all auto)
+- Plan 03-02: 5 min (3 tasks + human verification)
 
 **Quality Indicators:**
 - Requirements coverage: 66/66 mapped (100%)
 - Blocked requirements: 0
 - Deferred scope: Automation phase (post-v1)
-- No deviations from plans (6/6 plans executed exactly as written)
+- No deviations from plans (9/9 plans executed exactly as written)
 
 ---
 
@@ -101,6 +103,14 @@
 | 2026-01-19 | Stack page shows planned workflow with static diagrams | Can't show live automation evidence before automation exists. v1 has diagrams, post-v1 adds live widgets. |
 | 2026-01-19 | Architecture diagram uses 3-column grid layout | Natural grouping into Frontend/Backend/Infrastructure layers with responsive collapse to 1 column. |
 | 2026-01-19 | Automation pipeline presented as 8-step workflow | Linear Issue → Changelog flow with font-mono step numbers emphasizes sequence and automation continuity. |
+| 2026-01-20 | React Hook Form with zodResolver for type-safe validation | Uncontrolled inputs reduce re-renders (better performance). zodResolver provides type-safe validation matching server-side schema. |
+| 2026-01-20 | Honeypot field hidden with opacity:0 instead of display:none | Bots can detect display:none in CSS. Inline styles with opacity:0 are harder to parse programmatically. |
+| 2026-01-20 | Separate validation schema file for client/server sharing | Plan 02 Convex mutation needs same validation. Sharing schema prevents client/server validation drift. |
+| 2026-01-20 | Toast notification provider in layout for global availability | Toasts need to work from any component. Layout-level provider makes toast.success()/toast.error() available app-wide. |
+| 2026-01-20 | Rate limiter configured as fixed window (3 submissions per minute) | Fixed window simpler than token bucket. 3/min allows retry attempts while blocking spam floods. |
+| 2026-01-20 | Honeypot returns fake success to avoid alerting bots | Silent success prevents bots from learning they were caught and adapting detection avoidance strategies. |
+| 2026-01-20 | Rate limit key is 'anonymous' (not IP-based) for v1 | Convex mutations don't have direct IP access. Global limit acceptable for v1. Post-v1 enhancement: IP-based via middleware. |
+| 2026-01-20 | ConvexError for application errors, generic for system errors | ConvexError messages are controlled/safe to show. System errors might leak sensitive details - use generic message. |
 
 ### Active Todos
 
@@ -111,7 +121,9 @@
 - [x] Complete 02-03-PLAN.md (Build About and Resume Pages) - Done 2026-01-19
 - [x] Complete 02-04-PLAN.md (Build Projects Index and Detail Pages) - Done 2026-01-19
 - [x] Complete 02-05-PLAN.md (Build Stack/Automation Page) - Done 2026-01-19
-- [ ] Continue Phase 2 with Contact page - Next focus
+- [x] Complete 03-01-PLAN.md (Contact Form UI with Validation) - Done 2026-01-20
+- [x] Complete 03-02-PLAN.md (Contact Form Backend) - Done 2026-01-20
+- [ ] Phase 3 Complete - Move to Phase 4 (Authentication & Admin Panel)
 
 ### Known Blockers
 
@@ -134,17 +146,15 @@ You're working on an automated personal portfolio website. The roadmap is comple
 
 **What Just Happened:**
 - Completed Phase 1 (Foundation) - 5/5 requirements ✓
-- Completed 02-01 (Convex Queries & Framer Motion) - 2/26 Phase 2 requirements ✓
-- Completed 02-02 (Build Home Page) - 4/26 Phase 2 requirements ✓
-- Completed 02-03 (Build About and Resume Pages) - 6/26 Phase 2 requirements ✓
-- Completed 02-04 (Build Projects Index and Detail Pages) - 8/26 Phase 2 requirements ✓
-- Completed 02-05 (Build Stack/Automation Page) - 9/26 Phase 2 requirements ✓
-- Plan 02-05: Replaced Stack placeholder with complete page showing architecture diagram and automation pipeline
-- 1 atomic commit created for 02-05 (c0e79a1 - shared with 02-04)
-- 7 SUMMARY.md files created documenting completion
+- Completed Phase 2 Plans 01-05 - 9/26 Phase 2 requirements ✓
+- Completed Phase 3 (Contact Form) - 8/8 requirements ✓
+- Plan 03-01: Built contact form UI with React Hook Form, Zod validation, honeypot field, toast notifications
+- Plan 03-02: Built backend with 4-layer spam defense (honeypot, rate limiting, validation, persistence)
+- 6 atomic commits created (3 for 03-01, 3 for 03-02)
+- 9 SUMMARY.md files created documenting completion
 
 **What's Next:**
-Continue Phase 2 (Public Content Pages) - Build Contact page with form (final Phase 2 page before Phase 3 backend logic).
+Phase 4 (Authentication & Admin Panel) - WorkOS AuthKit integration and admin dashboard for content management.
 
 **Key Files:**
 - `.planning/PROJECT.md` - Core value and constraints
@@ -157,7 +167,12 @@ Continue Phase 2 (Public Content Pages) - Build Contact page with form (final Ph
 - `.planning/phases/02-public-content-pages/02-03-SUMMARY.md` - About and Resume pages complete
 - `.planning/phases/02-public-content-pages/02-04-SUMMARY.md` - Projects index and detail pages complete
 - `.planning/phases/02-public-content-pages/02-05-SUMMARY.md` - Stack/Automation page complete
+- `.planning/phases/03-contact-form/03-01-SUMMARY.md` - Contact form UI with validation complete
+- `.planning/phases/03-contact-form/03-02-SUMMARY.md` - Contact form backend with 4-layer spam defense complete
 - `convex/schema.ts` - Complete database schema with 4 tables and 5 indexes
+- `lib/validations/contact.ts` - Zod schema for contact form validation
+- `convex/convex.config.ts` - Convex app configuration with rate limiter registration
+- `convex/contact.ts` - Contact submission mutation with honeypot, rate limiting, validation
 - `convex/projects.ts` - 3 query functions (listPublished, listFeatured, getBySlug)
 - `convex/resume.ts` - 1 query function (get)
 - `app/layout.tsx` - Dark-themed root layout with Convex provider
@@ -176,12 +191,15 @@ Continue Phase 2 (Public Content Pages) - Build Contact page with form (final Ph
 - `app/projects/[slug]/page.tsx` - Dynamic project detail pages with SEO
 - `app/projects/[slug]/not-found.tsx` - Custom 404 page for invalid project slugs
 - `app/stack/page.tsx` - Stack/Automation page with architecture diagram and automation pipeline (203 lines)
+- `components/contact/ContactForm.tsx` - Contact form with React Hook Form and validation (137 lines)
+- `app/contact/page.tsx` - Contact page with form and email fallback
+- `app/layout.tsx` - Dark-themed root layout with Convex provider and Toaster
 
-**Last session:** 2026-01-19
-**Stopped at:** Completed 02-05-PLAN.md (Build Stack/Automation Page)
+**Last session:** 2026-01-20
+**Stopped at:** Completed 03-02-PLAN.md (Contact Form Backend) - Phase 3 Complete
 **Resume file:** None
 
 ---
 
 *State initialized: 2026-01-18*
-*Last updated: 2026-01-19*
+*Last updated: 2026-01-20*
