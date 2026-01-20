@@ -50,7 +50,9 @@ export const submit = mutation({
       });
     }
 
-    if (!args.email.includes("@")) {
+    // Enforce proper email format - matches Zod .email() validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(args.email)) {
       throw new ConvexError({
         message: "Please enter a valid email address",
       });
