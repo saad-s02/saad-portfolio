@@ -4,8 +4,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactFormSchema, type ContactFormData } from "@/lib/validations/contact";
 import toast from "react-hot-toast";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { ConvexError } from "convex/values";
 
 export function ContactForm() {
+  const submitContact = useMutation(api.contact.submit);
+
   const {
     register,
     handleSubmit,
@@ -23,17 +28,22 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     try {
-      // TODO: Replace with Convex mutation in Plan 02
-      console.log("Form submitted:", data);
-
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      toast.success("Message sent successfully!");
+      await submitContact({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        honeypot: data.website || "",
+      });
+      toast.success("Message sent successfully! I'll get back to you soon.");
       reset();
     } catch (error) {
-      console.error("Submission error:", error);
-      toast.error("Failed to send message. Please try again.");
+      if (error instanceof ConvexError) {
+        const msg = (error.data as { message: string }).message;
+        toast.error(msg || "Failed to send message. Please try again.");
+      } else {
+        console.error("Unexpected error:", error);
+        toast.error("An unexpected error occurred. Please try the email link below.");
+      }
     }
   };
 
