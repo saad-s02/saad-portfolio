@@ -29,9 +29,16 @@ export const listFeatured = query({
 export const getBySlug = query({
   args: { slug: v.string() },
   handler: async (ctx, { slug }) => {
-    return await ctx.db
+    const project = await ctx.db
       .query("projects")
       .withIndex("by_slug", (q) => q.eq("slug", slug))
       .first();
+
+    // Return null if draft (treat as not found for security)
+    if (project?.status !== "published") {
+      return null;
+    }
+
+    return project;
   },
 });

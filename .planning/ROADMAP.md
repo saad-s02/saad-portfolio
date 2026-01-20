@@ -66,7 +66,11 @@ Plans:
 
 **Requirements:** CONTACT-01, CONTACT-02, CONTACT-03, CONTACT-04, CONTACT-05, CONTACT-06, CONTACT-07, CONTACT-08
 
-**Plans:** 0 plans
+**Plans:** 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Set up form libraries, create validation schema, and build ContactForm UI
+- [ ] 03-02-PLAN.md — Implement Convex mutation with honeypot and rate limiting for spam protection
 
 **Success Criteria:**
 1. Visitor can fill out contact form with name, email, and message fields
