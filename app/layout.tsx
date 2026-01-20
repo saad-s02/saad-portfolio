@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ConvexClientProvider } from './ConvexClientProvider'
 import { Header } from '@/components/navigation/Header'
+import { Toaster } from 'react-hot-toast'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -24,6 +25,16 @@ export default function RootLayout({
           <main className="container mx-auto px-4 py-8">
             {children}
           </main>
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: '#1f2937',
+                color: '#f9fafb',
+              },
+            }}
+          />
         </ConvexClientProvider>
       </body>
     </html>
