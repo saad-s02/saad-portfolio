@@ -90,7 +90,14 @@ Plans:
 
 **Requirements:** AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05, AUTH-06, ADMIN-01, ADMIN-02, ADMIN-03, ADMIN-04, ADMIN-05, ADMIN-06, ADMIN-07, ADMIN-08, ADMIN-09, ADMIN-10, ADMIN-11
 
-**Plans:** 0 plans
+**Plans:** 5 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — WorkOS AuthKit setup with middleware and auth routes
+- [ ] 04-02-PLAN.md — Convex admin mutations with authentication verification
+- [ ] 04-03-PLAN.md — Admin layout with sidebar navigation and dashboard
+- [ ] 04-04-PLAN.md — Projects admin (list, create, edit, delete, toggles)
+- [ ] 04-05-PLAN.md — Resume, Changelog, and Contact Submissions admin
 
 **Success Criteria:**
 1. Only allowlisted email addresses can access `/admin/*` routes (unauthenticated users are redirected to login)
