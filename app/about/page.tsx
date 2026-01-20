@@ -11,7 +11,7 @@ export default function AboutPage() {
 
         <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
           <p>
-            I'm a full-stack engineer who believes the best code is code that ships fast,
+            I&apos;m a full-stack engineer who believes the best code is code that ships fast,
             scales confidently, and maintains itself. My approach combines modern web
             technologies with AI-assisted development workflows to deliver production-ready
             applications faster than traditional methods.
@@ -33,7 +33,7 @@ export default function AboutPage() {
           </p>
 
           <p>
-            When I'm not coding, I'm exploring new tools in the AI-assisted development space,
+            When I&apos;m not coding, I&apos;m exploring new tools in the AI-assisted development space,
             contributing to open source projects, and documenting patterns that help other
             engineers ship faster.
           </p>
@@ -94,9 +94,9 @@ export default function AboutPage() {
         </h2>
         <p className="text-gray-400 leading-relaxed">
           I work best with engineering managers who value velocity, quality, and automation.
-          If you're looking for someone who can ship features quickly while maintaining high
+          If you&apos;re looking for someone who can ship features quickly while maintaining high
           standards, establish development workflows that scale, and bring AI-assisted
-          development practices to your team, let's talk.
+          development practices to your team, let&apos;s talk.
         </p>
       </section>
     </div>

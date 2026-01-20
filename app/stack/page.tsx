@@ -160,7 +160,7 @@ export default function StackPage() {
           <p>
             <strong className="text-gray-300">Changelog Automation:</strong> On merge to
             main, GitHub Actions generates changelog entry with PR number, commit SHA, and
-            summary. Loop prevention ensures bot commits don't trigger additional updates.
+            summary. Loop prevention ensures bot commits don&apos;t trigger additional updates.
           </p>
         </div>
       </section>
@@ -185,7 +185,7 @@ export default function StackPage() {
           <p>
             <strong className="text-gray-300">This portfolio is proof-of-concept.</strong>
             {" "}Every feature you see was built using this exact workflow. The automation
-            you're reading about built the site you're reading it on.
+            you&apos;re reading about built the site you&apos;re reading it on.
           </p>
         </div>
       </section>
