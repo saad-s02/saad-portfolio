@@ -1,25 +1,20 @@
 name: ci
-
 on:
   pull_request:
   push:
     branches: [main]
-
 permissions:
   contents: read
-
+  pull-requests: read
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   ci:
     name: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # Always: basic docs sanity check (keeps CI meaningful while docs-only)
       - name: Validate markdown exists
         run: |
           set -euo pipefail
@@ -29,8 +24,6 @@ jobs:
             echo "FAIL: no markdown found"
             exit 1
           fi
-
-      # Detect whether a Node project exists (package.json)
       - name: Detect Node project
         id: node
         run: |
@@ -40,53 +33,66 @@ jobs:
           else
             echo "has_node=false" >> "$GITHUB_OUTPUT"
           fi
-
           if [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then
             echo "has_npm_lock=true" >> "$GITHUB_OUTPUT"
           else
             echo "has_npm_lock=false" >> "$GITHUB_OUTPUT"
           fi
-
-      # If package.json exists, require a lockfile (so CI becomes deterministic once Node is added)
       - name: Enforce lockfile when Node exists
         if: steps.node.outputs.has_node == 'true' && steps.node.outputs.has_npm_lock != 'true'
         run: |
           echo "package.json detected but no npm lockfile found."
           echo "Add package-lock.json (recommended) or npm-shrinkwrap.json."
           exit 1
-
-      # Node setup + caching ONLY when lockfile exists (prevents your current failure)
       - uses: actions/setup-node@v4
         if: steps.node.outputs.has_node == 'true' && steps.node.outputs.has_npm_lock == 'true'
         with:
           node-version: 20
           cache: npm
-
       - name: Install
         if: steps.node.outputs.has_node == 'true' && steps.node.outputs.has_npm_lock == 'true'
         run: npm ci
-
       - name: Lint
         if: steps.node.outputs.has_node == 'true' && steps.node.outputs.has_npm_lock == 'true'
         run: npm run lint --if-present
-
       - name: Typecheck
         if: steps.node.outputs.has_node == 'true' && steps.node.outputs.has_npm_lock == 'true'
         run: npm run typecheck --if-present
-
       - name: Test
         if: steps.node.outputs.has_node == 'true' && steps.node.outputs.has_npm_lock == 'true'
         run: npm test --if-present
-
       - name: Build
+        if: steps.node.outputs.has_node == 'true' && steps.node.outputs.has_npm_lock == 'true'
         run: npm run build
         env:
           NEXT_PUBLIC_CONVEX_URL: ${{ secrets.NEXT_PUBLIC_CONVEX_URL }}
 
-
-  # Keep this if your branch protection requires a "codex-review" check.
   codex-review:
     name: codex-review
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
-      - run: echo "placeholder"
+      - name: Check for Codex thumbs-up
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const prNumber = context.payload.pull_request.number;
+            
+            const CODEX_USERNAME = 'chatgpt-codex-connector';
+            
+            const reactions = await github.rest.reactions.listForIssue({
+              owner,
+              repo,
+              issue_number: prNumber,
+            });
+            
+            const codexThumbsUp = reactions.data.find(
+              r => r.user.login === CODEX_USERNAME && r.content === '+1'
+            );
+            
+            if (codexThumbsUp) {
+              console.log(`✅ ${CODEX_USERNAME} has approved this PR`);
+            } else {
+              core.setFailed(`❌ Waiting for ${CODEX_USERNAME} to approve with 👍`);
+            }
