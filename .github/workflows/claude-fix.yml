@@ -15,11 +15,19 @@ jobs:
   claude-fix:
     name: Claude Fix Codex Comments
     runs-on: ubuntu-latest
-    # Only run on PRs and only for Codex comments
+    # This job only runs when:
+    # 1. The event is from chatgpt-codex-connector[bot] (note the [bot] suffix - GitHub adds this to bot accounts)
+    # 2. For issue_comment events, it must be on a PR (github.event.issue.pull_request exists)
+    #    This prevents accidental pushes to main from regular issue comments
+    # 
+    # Common reasons for skipping:
+    # - Comment was from a different user
+    # - Missing [bot] suffix in username check
+    # - issue_comment on a regular issue (not a PR)
     if: |
-      (github.event_name == 'pull_request_review_comment' && github.event.comment.user.login == 'chatgpt-codex-connector') ||
-      (github.event_name == 'pull_request_review' && github.event.review.user.login == 'chatgpt-codex-connector') ||
-      (github.event_name == 'issue_comment' && github.event.issue.pull_request && github.event.comment.user.login == 'chatgpt-codex-connector')
+      (github.event_name == 'pull_request_review_comment' && github.event.comment.user.login == 'chatgpt-codex-connector[bot]') ||
+      (github.event_name == 'pull_request_review' && github.event.review.user.login == 'chatgpt-codex-connector[bot]') ||
+      (github.event_name == 'issue_comment' && github.event.issue.pull_request && github.event.comment.user.login == 'chatgpt-codex-connector[bot]')
     steps:
       - uses: actions/checkout@v4
         with:
