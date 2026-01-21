@@ -24,7 +24,9 @@
       "mcp__workos__workos_search",
       "mcp__convex__functionSpec",
       "mcp__convex__status",
-      "mcp__workos__workos_docs"
+      "mcp__workos__workos_docs",
+      "WebFetch(domain:github.com)",
+      "Bash(npm run lint)"
     ]
   }
 }
