@@ -1,19 +1,18 @@
 "use client";
 
-import { use } from "react";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { ProjectForm } from "./ProjectForm";
 import { Id } from "@/convex/_generated/dataModel";
 
 interface EditProjectPageProps {
-  params: Promise<{
+  params: {
     id: string;
-  }>;
+  };
 }
 
 export default function EditProjectPage({ params }: EditProjectPageProps) {
-  const { id } = use(params);
+  const { id } = params;
   const projects = useQuery(api.projects.listAll);
 
   if (projects === undefined) {
