@@ -58,25 +58,25 @@
 - [ ] **CONTACT-08**: Loading state while form is submitting
 
 ### Authentication
-- [ ] **AUTH-01**: WorkOS AuthKit integrated for authentication
-- [ ] **AUTH-02**: Email allowlist configured (only allowlisted emails can access admin)
-- [ ] **AUTH-03**: Auth middleware protects all /admin/* routes
-- [ ] **AUTH-04**: Login redirects to admin dashboard after successful auth
-- [ ] **AUTH-05**: Logout functionality available in admin panel
-- [ ] **AUTH-06**: Session persists across browser refresh
+- [x] **AUTH-01**: WorkOS AuthKit integrated for authentication
+- [x] **AUTH-02**: Email allowlist configured (only allowlisted emails can access admin)
+- [x] **AUTH-03**: Auth middleware protects all /admin/* routes
+- [x] **AUTH-04**: Login redirects to admin dashboard after successful auth
+- [x] **AUTH-05**: Logout functionality available in admin panel
+- [x] **AUTH-06**: Session persists across browser refresh
 
 ### Admin Panel
-- [ ] **ADMIN-01**: Admin dashboard layout with navigation to Projects, Resume, Changelog sections
-- [ ] **ADMIN-02**: Projects list shows all projects (published and draft)
-- [ ] **ADMIN-03**: Create new project form with all required fields
-- [ ] **ADMIN-04**: Edit existing project form pre-populated with current data
-- [ ] **ADMIN-05**: Delete project with confirmation dialog
-- [ ] **ADMIN-06**: Toggle draft/published status for projects
-- [ ] **ADMIN-07**: Toggle featured flag for projects
-- [ ] **ADMIN-08**: Resume editor for highlights, experience, education, skills sections
-- [ ] **ADMIN-09**: Changelog list showing all entries
-- [ ] **ADMIN-10**: Toggle visibility for changelog entries
-- [ ] **ADMIN-11**: All Convex mutations verify auth context before executing
+- [x] **ADMIN-01**: Admin dashboard layout with navigation to Projects, Resume, Changelog sections
+- [x] **ADMIN-02**: Projects list shows all projects (published and draft)
+- [x] **ADMIN-03**: Create new project form with all required fields
+- [x] **ADMIN-04**: Edit existing project form pre-populated with current data
+- [x] **ADMIN-05**: Delete project with confirmation dialog
+- [x] **ADMIN-06**: Toggle draft/published status for projects
+- [x] **ADMIN-07**: Toggle featured flag for projects
+- [x] **ADMIN-08**: Resume editor for highlights, experience, education, skills sections
+- [x] **ADMIN-09**: Changelog list showing all entries
+- [x] **ADMIN-10**: Toggle visibility for changelog entries
+- [x] **ADMIN-11**: All Convex mutations verify auth context before executing
 
 ### Design & Animations
 - [ ] **DESIGN-01**: Dark color scheme applied to all pages
