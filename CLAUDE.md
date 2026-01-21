@@ -99,6 +99,10 @@ The repository includes Claude Code automation via GitHub Actions and slash comm
 
 ## Development Guidelines
 
+### Linting
+1. After adding any new feature run npm run lint
+2. Check to see if we have any linting errors and fix if we have any
+
 ### When Adding Features
 1. Check if the feature requires admin capabilities (add to `/admin/*` routes)
 2. Determine if new Convex schema is needed (update `convex/schema.ts`)

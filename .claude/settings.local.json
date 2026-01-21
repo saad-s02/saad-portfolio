@@ -14,7 +14,19 @@
       "Bash(git show:*)",
       "Bash(git log:*)",
       "Bash(wc:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npx tsc:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(npm view:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:docs.convex.dev)",
+      "mcp__workos__workos_search",
+      "mcp__convex__functionSpec",
+      "mcp__convex__status",
+      "mcp__workos__workos_docs",
+      "WebFetch(domain:github.com)",
+      "Bash(npm run lint)"
     ]
   }
 }
