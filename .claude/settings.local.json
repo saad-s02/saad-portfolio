@@ -26,7 +26,19 @@
       "mcp__convex__status",
       "mcp__workos__workos_docs",
       "WebFetch(domain:github.com)",
-      "Bash(npm run lint)"
+      "Bash(npm run lint)",
+      "mcp__vercel__list_teams",
+      "mcp__vercel__list_projects",
+      "mcp__vercel__list_deployments",
+      "mcp__vercel__get_deployment_build_logs",
+      "mcp__convex__logs",
+      "mcp__vercel__get_project",
+      "Bash(gh api:*)",
+      "mcp__vercel__web_fetch_vercel_url",
+      "Bash(npx convex env:*)",
+      "mcp__convex__envList",
+      "Bash(npx convex:*)",
+      "Bash(dir:*)"
     ]
   }
 }
