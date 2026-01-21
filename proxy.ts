@@ -11,6 +11,7 @@ export default authkitMiddleware({
       '/projects/:path*',
       '/stack',
       '/contact',
+      '/auth/:path*',
     ],
   },
 });
