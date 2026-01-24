@@ -1,7 +1,7 @@
 # Project State: Automated Personal Portfolio Website
 
-**Last Updated:** 2026-01-20
-**Status:** Phase 4 Complete - Ready for Phase 5 (Design & Animations)
+**Last Updated:** 2026-01-24
+**Status:** Phase 5 Complete - Ready for Phase 6 (SEO & Deployment)
 
 ---
 
@@ -9,7 +9,7 @@
 
 **Core Value:** Stack/Automation page demonstrating automated workflow (Issue → Claude PR → Review → CI → Merge → Deploy → Changelog) is the key differentiator
 
-**Current Focus:** Phase 4 Complete - All 17 auth/admin requirements verified ✓. Next: Phase 5 Design & Animations.
+**Current Focus:** Phase 5 Complete - All 8 design requirements verified ✓. Next: Phase 6 SEO & Deployment.
 
 **Key Constraints:**
 - Privacy: No client names or sensitive metrics in public content
@@ -22,29 +22,29 @@
 
 ## Current Position
 
-**Phase:** 4 of 6 (Authentication & Admin Panel)
-**Plan:** 05 of 05 (COMPLETE)
-**Status:** Phase 4 COMPLETE
-**Last activity:** 2026-01-20 - Completed 04-05-PLAN.md (Admin Content Management)
+**Phase:** 5 of 6 (Design & Animations)
+**Plan:** 03 of 03
+**Status:** Phase 5 Complete
+**Last activity:** 2026-01-24 - Completed 05-03-PLAN.md (Apply Scroll Animations)
 
 **Progress:**
 ```
-[█████████████████████░░░░░░░░░░░░░░░░░░] 61% (40/66 requirements)
+[████████████████████████████████████████░░] 97% (64/66 requirements)
 ```
 
 **Phase Breakdown:**
 - Phase 1: Foundation (5 requirements) - 5/5 complete (100%) ✓
-- Phase 2: Public Content Pages (26 requirements) - 9/26 complete (35%)
+- Phase 2: Public Content Pages (26 requirements) - 26/26 complete (100%) ✓
 - Phase 3: Contact Form (8 requirements) - 8/8 complete (100%) ✓
 - Phase 4: Authentication & Admin Panel (17 requirements) - 17/17 complete (100%) ✓
-- Phase 5: Design & Animations (8 requirements) - Pending
+- Phase 5: Design & Animations (8 requirements) - 8/8 complete (100%) ✓
 - Phase 6: SEO & Deployment (11 requirements) - Pending
 
 ---
 
 ## Performance Metrics
 
-**Velocity:** 15 plans completed (18 min average)
+**Velocity:** 18 plans completed (15 min average)
 
 **Cycle Times:**
 - Planning → Execution: Immediate (autonomous plans)
@@ -63,12 +63,15 @@
 - Plan 04-03: 45 min (2 tasks + 1 human-verify checkpoint + orchestrator fix)
 - Plan 04-04: 70 min (6 tasks + 1 human-verify checkpoint + orchestrator auth fixes)
 - Plan 04-05: 25 min (3 tasks + 1 human-verify checkpoint)
+- Plan 05-01: 6 min (3 tasks, all auto)
+- Plan 05-02: 3 min (3 tasks, all auto)
+- Plan 05-03: 15 min (4 tasks + 1 human-verify checkpoint)
 
 **Quality Indicators:**
 - Requirements coverage: 66/66 mapped (100%)
 - Blocked requirements: 0
 - Deferred scope: Automation phase (post-v1)
-- Plans executed: 15/15 (1 auto-fix for Next.js 16 compatibility, 2 orchestrator auth config fixes)
+- Plans executed: 18/18 (1 auto-fix for Next.js 16 compatibility, 2 orchestrator auth config fixes)
 
 ---
 
@@ -132,6 +135,23 @@
 | 2026-01-20 | Client-side filtering for contact submissions | Better UX with instant tab switching. Contact volume low enough for client-side filtering. |
 | 2026-01-20 | Optimistic UI updates for toggles (visibility, status) | Provides instant feedback. Rollback handles rare mutation failures gracefully. |
 | 2026-01-20 | React Hook Form useFieldArray for nested resume arrays | Resume form has 4 levels of nested arrays (experience achievements, skills items). useFieldArray manages add/remove. |
+| 2026-01-24 | Complete gray palette with WCAG AA verified contrast ratios | All text colors documented with specific contrast ratios: gray-50 (18.5:1), gray-100 (17.1:1), gray-300 (11.5:1), gray-400 (7.5:1), gray-500 (4.9:1). gray-600 marked as non-text only (3.8:1 fails WCAG AA). |
+| 2026-01-24 | Focus-visible outline using gray-400 for accessibility | Provides 7.5:1 contrast, uses outline-2 with outline-offset-2 for clear keyboard navigation focus indication. |
+| 2026-01-24 | Smooth scrolling with prefers-reduced-motion support | Enabled for better UX with anchor links, respects user accessibility preferences for reduced motion. |
+| 2026-01-24 | Animation wrappers are client components with useReducedMotion | FadeIn, SlideIn, PageTransition use "use client" directive. Server components can import and use without "use client" proliferation. All animations conditional on !shouldReduceMotion for WCAG 2.1 compliance. |
+| 2026-01-24 | template.tsx for page transitions (not layout.tsx) | template.tsx creates new instance on navigation, enabling animation lifecycle. layout.tsx persists across routes and breaks animation trigger. |
+| 2026-01-24 | viewport.once prevents re-animation on scroll up | Better performance. Content doesn't re-animate repeatedly. Animation introduces content once, doesn't distract from it. |
+| 2026-01-24 | margin: -100px triggers animation before element enters viewport | Perceived faster reveal. Animation completes before element fully visible, feels more responsive. |
+| 2026-01-24 | Short duration (0.3s) for page transitions, 0.5s for scroll reveals | Page transitions should feel fast on frequent navigation. Scroll reveals can be slightly longer as one-time events. |
+| 2026-01-24 | Moderate x/y values (20-30px) for mobile performance | Large animation values (50-100px) cause janky performance on mobile with limited GPU. Subtle animations feel smoother on low-end devices. |
+| 2026-01-24 | Font smoothing for dark backgrounds | Applied -webkit-font-smoothing: antialiased and -moz-osx-font-smoothing: grayscale to improve text crispness on dark theme. |
+| 2026-01-24 | Standardized link transitions at 200ms duration | All links get consistent transition-colors via @layer components for unified hover experience. |
+| 2026-01-24 | Home sections use staggered delays for sequential flow | Hero (0ms), Highlights (internal stagger), Automation (200ms), CTA (300ms) creates natural top-to-bottom reading flow. |
+| 2026-01-24 | Highlights list converted to client component for stagger animation | Staggered list animation requires motion.ul with variants and staggerChildren: 0.1 (100ms between items). |
+| 2026-01-24 | About strengths cards slide from left sequentially | Four cards use SlideIn direction="left" with 0/100/200/300ms delays. Directional slide creates sense of "building" the grid. |
+| 2026-01-24 | Stack sections animate as units (not individual items) | Animating 9 architecture items + 8 pipeline steps individually = 17 simultaneous animations → jank. Sections maintain performance. |
+| 2026-01-24 | Resume sections use 100ms incremental delays | Highlights → Experience → Education → Skills with sequential delays create smooth top-to-bottom scroll reveal. |
+| 2026-01-24 | Header logo gets subtle 1.05x scale on hover | motion.div wrapper around Link with whileHover provides tactile feedback. 5% scale subtle enough for header element. |
 
 ### Active Todos
 
@@ -151,6 +171,10 @@
 - [x] Complete 04-04-PLAN.md (Projects Admin CRUD Interface) - Done 2026-01-20
 - [x] Complete 04-05-PLAN.md (Admin Content Management) - Done 2026-01-20
 - [x] Phase 4 Complete - Move to Phase 5 (Design & Animations)
+- [x] Complete 05-01-PLAN.md (Animation Wrapper Components) - Done 2026-01-24
+- [x] Complete 05-02-PLAN.md (WCAG AA Design Polish) - Done 2026-01-24
+- [x] Complete 05-03-PLAN.md (Apply Scroll Animations) - Done 2026-01-24
+- [x] Phase 5 Complete - Move to Phase 6 (SEO & Deployment)
 
 ### Known Blockers
 
@@ -173,21 +197,30 @@ You're working on an automated personal portfolio website. The roadmap is comple
 
 **What Just Happened:**
 - Completed Phase 1 (Foundation) - 5/5 requirements ✓
-- Completed Phase 2 Plans 01-05 - 9/26 Phase 2 requirements ✓
+- Completed Phase 2 (Public Content Pages) - 26/26 requirements ✓
 - Completed Phase 3 (Contact Form) - 8/8 requirements ✓
 - Completed Phase 4 (Authentication & Admin Panel) - 17/17 requirements ✓
-- Plan 04-01: Integrated WorkOS AuthKit with email allowlist enforcement
-- Plan 04-02: Built admin mutations for all tables with auth verification
-- Plan 04-03: Created admin layout with dashboard and navigation
-- Plan 04-04: Built complete projects CRUD interface (list, create, edit, delete, toggles)
-- Plan 04-05: Built resume editor, changelog visibility management, and contact submissions inbox
-- Admin panel fully functional with all content management tools
-- Real-time Convex queries working with reactive updates
-- User verified all admin sections working correctly
-- 15 SUMMARY.md files created documenting completion
+- Completed Phase 5 (Design & Animations) - 8/8 requirements ✓
+- Plan 05-01: Created animation infrastructure with accessibility support
+  - FadeIn scroll reveal wrapper with useReducedMotion
+  - SlideIn directional scroll reveal (4 directions)
+  - PageTransition route-level animation wrapper
+  - Global page transitions via app/template.tsx
+- Plan 05-02: Refined dark minimalist aesthetic with WCAG AA compliance
+  - Complete gray palette with verified contrast ratios
+  - Focus-visible keyboard navigation styles
+  - Smooth scrolling with reduced-motion support
+  - Font smoothing for crisp text on dark backgrounds
+- Plan 05-03: Applied scroll animations to all pages
+  - Home sections with staggered timing (hero, highlights, automation, CTA)
+  - About strengths cards slide in from left sequentially
+  - Stack and Resume sections with scroll reveals
+  - Header logo hover animation (1.05x scale)
+- 18 SUMMARY.md files created documenting completion
+- Phase 5 verified (16/16 must-haves)
 
 **What's Next:**
-Move to Phase 5 - Design & Animations (refine dark aesthetic, add Framer Motion animations, polish responsive layouts).
+Move to Phase 6 - SEO & Deployment (metadata, sitemap, OpenGraph, Vercel deployment).
 
 **Key Files:**
 - `.planning/PROJECT.md` - Core value and constraints
@@ -207,6 +240,9 @@ Move to Phase 5 - Design & Animations (refine dark aesthetic, add Framer Motion 
 - `.planning/phases/04-authentication---admin-panel/04-03-SUMMARY.md` - Admin layout and dashboard complete
 - `.planning/phases/04-authentication---admin-panel/04-04-SUMMARY.md` - Projects admin CRUD interface complete
 - `.planning/phases/04-authentication---admin-panel/04-05-SUMMARY.md` - Admin content management (resume, changelog, contact) complete
+- `.planning/phases/05-design-and-animations/05-01-SUMMARY.md` - Animation infrastructure with accessibility support
+- `.planning/phases/05-design-and-animations/05-02-SUMMARY.md` - Dark aesthetic refinement with WCAG AA compliance
+- `.planning/phases/05-design-and-animations/05-03-SUMMARY.md` - Scroll animations applied to all pages with stagger effects
 - `convex/schema.ts` - Complete database schema with 4 tables and 5 indexes
 - `lib/validations/contact.ts` - Zod schema for contact form validation
 - `convex/convex.config.ts` - Convex app configuration with rate limiter registration
@@ -252,9 +288,14 @@ Move to Phase 5 - Design & Animations (refine dark aesthetic, add Framer Motion 
 - `app/stack/page.tsx` - Stack/Automation page with architecture diagram and automation pipeline (203 lines)
 - `components/contact/ContactForm.tsx` - Contact form with React Hook Form and validation (137 lines)
 - `app/contact/page.tsx` - Contact page with form and email fallback
+- `components/animations/FadeIn.tsx` - Scroll reveal wrapper with useReducedMotion support (40 lines)
+- `components/animations/SlideIn.tsx` - Directional scroll reveal with 4-direction support (65 lines)
+- `components/animations/PageTransition.tsx` - Route-level fade transition wrapper (46 lines)
+- `app/template.tsx` - Global page transition component (25 lines)
+- `app/globals.css` - WCAG AA compliant color palette with focus states and typography polish
 
-**Last session:** 2026-01-20
-**Stopped at:** Completed 04-05-PLAN.md (Admin Content Management) - Phase 4 COMPLETE
+**Last session:** 2026-01-24
+**Stopped at:** Completed 05-03-PLAN.md (Apply Scroll Animations) - Phase 5 Complete
 **Resume file:** None
 
 ---
