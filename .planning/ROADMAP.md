@@ -143,7 +143,12 @@ Plans:
 
 **Requirements:** SEO-01, SEO-02, SEO-03, SEO-04, SEO-05, SEO-06, DEPLOY-01, DEPLOY-02, DEPLOY-03, DEPLOY-04, DEPLOY-05
 
-**Plans:** 0 plans
+**Plans:** 3 plans
+
+Plans:
+- [ ] 06-01-PLAN.md — Add metadata to all pages, create sitemap.ts and robots.ts
+- [ ] 06-02-PLAN.md — Deploy to Vercel production with Convex backend and WorkOS configuration
+- [ ] 06-03-PLAN.md — Configure preview deployments with isolated backends
 
 **Success Criteria:**
 1. Every page has unique title and meta description visible in browser tab and search results
