@@ -14,6 +14,8 @@ export default authkitMiddleware({
       '/auth/:path*',
     ],
   },
+  // Enable synchronous access token availability for Convex integration
+  eagerAuth: true,
 });
 
 export const config = {
