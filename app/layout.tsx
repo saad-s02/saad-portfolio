@@ -9,7 +9,19 @@ export const metadata: Metadata = {
     default: 'Portfolio',
     template: '%s | Portfolio',
   },
-  description: 'Personal portfolio showcasing projects and engineering automation',
+  description: 'Full-stack engineer building automated workflows that ship faster. Next.js, TypeScript, AI-assisted development.',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    siteName: 'Portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({

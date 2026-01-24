@@ -3,7 +3,16 @@ import { ContactForm } from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with me",
+  description: "Get in touch about projects, collaboration opportunities, or questions about AI-assisted development workflows.",
+  openGraph: {
+    title: "Contact",
+    description: "Get in touch about projects, collaboration opportunities, or questions about AI-assisted development.",
+    type: 'website',
+    url: 'https://yourdomain.com/contact',
+  },
+  alternates: {
+    canonical: 'https://yourdomain.com/contact',
+  },
 };
 
 export default function ContactPage() {

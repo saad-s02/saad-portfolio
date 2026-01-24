@@ -4,8 +4,17 @@ import { api } from "@/convex/_generated/api";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 
 export const metadata = {
-  title: "Projects | Saad Siddiqui",
-  description: "Portfolio of web applications, automation workflows, and engineering projects",
+  title: "Projects",
+  description: "Portfolio of web applications, automation workflows, and engineering projects built with Next.js, TypeScript, and modern web technologies.",
+  openGraph: {
+    title: "Projects",
+    description: "Portfolio of web applications, automation workflows, and engineering projects.",
+    type: 'website',
+    url: 'https://yourdomain.com/projects',
+  },
+  alternates: {
+    canonical: 'https://yourdomain.com/projects',
+  },
 };
 
 export default async function ProjectsPage() {

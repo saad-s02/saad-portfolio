@@ -3,8 +3,17 @@ import { api } from "@/convex/_generated/api";
 import { FadeIn } from "@/components/animations/FadeIn";
 
 export const metadata = {
-  title: "Resume | Saad Siddiqui",
-  description: "Professional experience, skills, education, and highlights",
+  title: "Resume",
+  description: "Professional experience, technical skills, education, and career highlights in full-stack development and automation engineering.",
+  openGraph: {
+    title: "Resume",
+    description: "Professional experience, technical skills, education, and career highlights in full-stack development.",
+    type: 'website',
+    url: 'https://yourdomain.com/resume',
+  },
+  alternates: {
+    canonical: 'https://yourdomain.com/resume',
+  },
 };
 
 export default async function ResumePage() {

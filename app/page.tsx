@@ -8,8 +8,17 @@ import { AutomationTeaser } from "@/components/home/AutomationTeaser";
 import { ContactCTA } from "@/components/home/ContactCTA";
 
 export const metadata = {
-  title: "Home | Automated Portfolio",
-  description: "Personal portfolio showcasing projects and engineering automation workflow",
+  title: null, // Use default title from layout ('Portfolio')
+  description: "Full-stack engineer building automated workflows with Next.js, TypeScript, and AI-assisted development. See projects and engineering automation in action.",
+  openGraph: {
+    title: 'Portfolio',
+    description: "Full-stack engineer building automated workflows with Next.js, TypeScript, and AI-assisted development.",
+    type: 'website',
+    url: 'https://yourdomain.com',
+  },
+  alternates: {
+    canonical: 'https://yourdomain.com',
+  },
 };
 
 export default async function HomePage() {
