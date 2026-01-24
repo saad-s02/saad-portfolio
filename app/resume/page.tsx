@@ -9,10 +9,10 @@ export const metadata = {
     title: "Resume",
     description: "Professional experience, technical skills, education, and career highlights in full-stack development.",
     type: 'website',
-    url: 'https://yourdomain.com/resume',
+    url: 'https://saadsiddiqui.dev/resume',
   },
   alternates: {
-    canonical: 'https://yourdomain.com/resume',
+    canonical: 'https://saadsiddiqui.dev/resume',
   },
 };
 

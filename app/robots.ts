@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/auth/', '/api/'],
     },
-    sitemap: 'https://yourdomain.com/sitemap.xml',
+    sitemap: 'https://saadsiddiqui.dev/sitemap.xml',
   }
 }

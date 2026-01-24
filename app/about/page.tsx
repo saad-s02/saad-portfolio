@@ -8,10 +8,10 @@ export const metadata = {
     title: "About",
     description: "Background, approach, and strengths in full-stack development and AI-assisted automation workflows.",
     type: 'website',
-    url: 'https://yourdomain.com/about',
+    url: 'https://saadsiddiqui.dev/about',
   },
   alternates: {
-    canonical: 'https://yourdomain.com/about',
+    canonical: 'https://saadsiddiqui.dev/about',
   },
 };
 

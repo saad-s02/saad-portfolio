@@ -14,10 +14,10 @@ export const metadata = {
     title: 'Portfolio',
     description: "Full-stack engineer building automated workflows with Next.js, TypeScript, and AI-assisted development.",
     type: 'website',
-    url: 'https://yourdomain.com',
+    url: 'https://saadsiddiqui.dev',
   },
   alternates: {
-    canonical: 'https://yourdomain.com',
+    canonical: 'https://saadsiddiqui.dev',
   },
 };
 

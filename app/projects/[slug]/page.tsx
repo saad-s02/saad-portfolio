@@ -37,10 +37,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: project.title,
       description: project.summary,
       type: "article",
-      url: `https://yourdomain.com/projects/${slug}`,
+      url: `https://saadsiddiqui.dev/projects/${slug}`,
     },
     alternates: {
-      canonical: `https://yourdomain.com/projects/${slug}`,
+      canonical: `https://saadsiddiqui.dev/projects/${slug}`,
     },
   };
 }

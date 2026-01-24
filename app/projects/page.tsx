@@ -10,10 +10,10 @@ export const metadata = {
     title: "Projects",
     description: "Portfolio of web applications, automation workflows, and engineering projects.",
     type: 'website',
-    url: 'https://yourdomain.com/projects',
+    url: 'https://saadsiddiqui.dev/projects',
   },
   alternates: {
-    canonical: 'https://yourdomain.com/projects',
+    canonical: 'https://saadsiddiqui.dev/projects',
   },
 };
 

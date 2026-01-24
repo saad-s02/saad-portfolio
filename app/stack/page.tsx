@@ -7,10 +7,10 @@ export const metadata = {
     title: "Stack & Automation",
     description: "Technical architecture and automated development workflow using Claude Code, GitHub Actions, and CI/CD.",
     type: 'website',
-    url: 'https://yourdomain.com/stack',
+    url: 'https://saadsiddiqui.dev/stack',
   },
   alternates: {
-    canonical: 'https://yourdomain.com/stack',
+    canonical: 'https://saadsiddiqui.dev/stack',
   },
 };
 

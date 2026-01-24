@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     title: "Contact",
     description: "Get in touch about projects, collaboration opportunities, or questions about AI-assisted development.",
     type: 'website',
-    url: 'https://yourdomain.com/contact',
+    url: 'https://saadsiddiqui.dev/contact',
   },
   alternates: {
-    canonical: 'https://yourdomain.com/contact',
+    canonical: 'https://saadsiddiqui.dev/contact',
   },
 };
 
