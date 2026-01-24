@@ -1,7 +1,7 @@
 # Project State: Automated Personal Portfolio Website
 
 **Last Updated:** 2026-01-24
-**Status:** Phase 5 In Progress - Design & Animations (Plan 02 of 03)
+**Status:** Phase 5 In Progress - Design & Animations (Plan 01 of 03)
 
 ---
 
@@ -23,9 +23,9 @@
 ## Current Position
 
 **Phase:** 5 of 6 (Design & Animations)
-**Plan:** 02 of 03
+**Plan:** 01 of 03
 **Status:** Phase 5 In Progress
-**Last activity:** 2026-01-24 - Completed 05-02-PLAN.md (Dark Minimalist Aesthetic Refinement)
+**Last activity:** 2026-01-24 - Completed 05-01-PLAN.md (Animation Infrastructure)
 
 **Progress:**
 ```
@@ -63,6 +63,7 @@
 - Plan 04-03: 45 min (2 tasks + 1 human-verify checkpoint + orchestrator fix)
 - Plan 04-04: 70 min (6 tasks + 1 human-verify checkpoint + orchestrator auth fixes)
 - Plan 04-05: 25 min (3 tasks + 1 human-verify checkpoint)
+- Plan 05-01: 6 min (3 tasks, all auto)
 - Plan 05-02: 3 min (3 tasks, all auto)
 
 **Quality Indicators:**
@@ -136,6 +137,12 @@
 | 2026-01-24 | Complete gray palette with WCAG AA verified contrast ratios | All text colors documented with specific contrast ratios: gray-50 (18.5:1), gray-100 (17.1:1), gray-300 (11.5:1), gray-400 (7.5:1), gray-500 (4.9:1). gray-600 marked as non-text only (3.8:1 fails WCAG AA). |
 | 2026-01-24 | Focus-visible outline using gray-400 for accessibility | Provides 7.5:1 contrast, uses outline-2 with outline-offset-2 for clear keyboard navigation focus indication. |
 | 2026-01-24 | Smooth scrolling with prefers-reduced-motion support | Enabled for better UX with anchor links, respects user accessibility preferences for reduced motion. |
+| 2026-01-24 | Animation wrappers are client components with useReducedMotion | FadeIn, SlideIn, PageTransition use "use client" directive. Server components can import and use without "use client" proliferation. All animations conditional on !shouldReduceMotion for WCAG 2.1 compliance. |
+| 2026-01-24 | template.tsx for page transitions (not layout.tsx) | template.tsx creates new instance on navigation, enabling animation lifecycle. layout.tsx persists across routes and breaks animation trigger. |
+| 2026-01-24 | viewport.once prevents re-animation on scroll up | Better performance. Content doesn't re-animate repeatedly. Animation introduces content once, doesn't distract from it. |
+| 2026-01-24 | margin: -100px triggers animation before element enters viewport | Perceived faster reveal. Animation completes before element fully visible, feels more responsive. |
+| 2026-01-24 | Short duration (0.3s) for page transitions, 0.5s for scroll reveals | Page transitions should feel fast on frequent navigation. Scroll reveals can be slightly longer as one-time events. |
+| 2026-01-24 | Moderate x/y values (20-30px) for mobile performance | Large animation values (50-100px) cause janky performance on mobile with limited GPU. Subtle animations feel smoother on low-end devices. |
 | 2026-01-24 | Font smoothing for dark backgrounds | Applied -webkit-font-smoothing: antialiased and -moz-osx-font-smoothing: grayscale to improve text crispness on dark theme. |
 | 2026-01-24 | Standardized link transitions at 200ms duration | All links get consistent transition-colors via @layer components for unified hover experience. |
 
@@ -157,6 +164,7 @@
 - [x] Complete 04-04-PLAN.md (Projects Admin CRUD Interface) - Done 2026-01-20
 - [x] Complete 04-05-PLAN.md (Admin Content Management) - Done 2026-01-20
 - [x] Phase 4 Complete - Move to Phase 5 (Design & Animations)
+- [x] Complete 05-01-PLAN.md (Animation Infrastructure) - Done 2026-01-24
 - [x] Complete 05-02-PLAN.md (Dark Minimalist Aesthetic Refinement) - Done 2026-01-24
 
 ### Known Blockers
@@ -192,6 +200,11 @@ You're working on an automated personal portfolio website. The roadmap is comple
 - Real-time Convex queries working with reactive updates
 - User verified all admin sections working correctly
 - Phase 5 In Progress: Design & Animations
+- Plan 05-01: Created animation infrastructure with accessibility support
+  - FadeIn scroll reveal wrapper with useReducedMotion
+  - SlideIn directional scroll reveal (4 directions)
+  - PageTransition route-level animation wrapper
+  - Global page transitions via app/template.tsx
 - Plan 05-02: Refined dark minimalist aesthetic with WCAG AA compliance
   - Complete gray palette with verified contrast ratios
   - Focus-visible keyboard navigation styles
@@ -200,7 +213,7 @@ You're working on an automated personal portfolio website. The roadmap is comple
 - 16 SUMMARY.md files created documenting completion
 
 **What's Next:**
-Continue Phase 5 - Plan 03 (Apply scroll animations to all pages with FadeIn wrapper).
+Continue Phase 5 - Plan 03 (Apply scroll animations to all pages with animation wrappers).
 
 **Key Files:**
 - `.planning/PROJECT.md` - Core value and constraints
@@ -220,6 +233,7 @@ Continue Phase 5 - Plan 03 (Apply scroll animations to all pages with FadeIn wra
 - `.planning/phases/04-authentication---admin-panel/04-03-SUMMARY.md` - Admin layout and dashboard complete
 - `.planning/phases/04-authentication---admin-panel/04-04-SUMMARY.md` - Projects admin CRUD interface complete
 - `.planning/phases/04-authentication---admin-panel/04-05-SUMMARY.md` - Admin content management (resume, changelog, contact) complete
+- `.planning/phases/05-design-and-animations/05-01-SUMMARY.md` - Animation infrastructure with accessibility support
 - `.planning/phases/05-design-and-animations/05-02-SUMMARY.md` - Dark aesthetic refinement with WCAG AA compliance
 - `convex/schema.ts` - Complete database schema with 4 tables and 5 indexes
 - `lib/validations/contact.ts` - Zod schema for contact form validation
@@ -266,10 +280,14 @@ Continue Phase 5 - Plan 03 (Apply scroll animations to all pages with FadeIn wra
 - `app/stack/page.tsx` - Stack/Automation page with architecture diagram and automation pipeline (203 lines)
 - `components/contact/ContactForm.tsx` - Contact form with React Hook Form and validation (137 lines)
 - `app/contact/page.tsx` - Contact page with form and email fallback
+- `components/animations/FadeIn.tsx` - Scroll reveal wrapper with useReducedMotion support (40 lines)
+- `components/animations/SlideIn.tsx` - Directional scroll reveal with 4-direction support (65 lines)
+- `components/animations/PageTransition.tsx` - Route-level fade transition wrapper (46 lines)
+- `app/template.tsx` - Global page transition component (25 lines)
 - `app/globals.css` - WCAG AA compliant color palette with focus states and typography polish
 
 **Last session:** 2026-01-24
-**Stopped at:** Completed 05-02-PLAN.md (Dark Minimalist Aesthetic Refinement)
+**Stopped at:** Completed 05-01-PLAN.md (Animation Infrastructure)
 **Resume file:** None
 
 ---
