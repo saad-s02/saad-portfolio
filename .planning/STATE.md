@@ -1,7 +1,7 @@
 # Project State: Automated Personal Portfolio Website
 
 **Last Updated:** 2026-01-24
-**Status:** Phase 5 Complete - Ready for Phase 6 (SEO & Deployment)
+**Status:** Phase 6 In Progress - SEO Metadata Complete (1/3 plans)
 
 ---
 
@@ -9,7 +9,7 @@
 
 **Core Value:** Stack/Automation page demonstrating automated workflow (Issue → Claude PR → Review → CI → Merge → Deploy → Changelog) is the key differentiator
 
-**Current Focus:** Phase 5 Complete - All 8 design requirements verified ✓. Next: Phase 6 SEO & Deployment.
+**Current Focus:** Phase 6 In Progress - SEO metadata, sitemap, and robots.txt complete. 6/11 SEO requirements verified ✓.
 
 **Key Constraints:**
 - Privacy: No client names or sensitive metrics in public content
@@ -22,14 +22,14 @@
 
 ## Current Position
 
-**Phase:** 5 of 6 (Design & Animations)
-**Plan:** 03 of 03
-**Status:** Phase 5 Complete
-**Last activity:** 2026-01-24 - Completed 05-03-PLAN.md (Apply Scroll Animations)
+**Phase:** 6 of 6 (SEO & Deployment)
+**Plan:** 01 of 03
+**Status:** Phase 6 In Progress
+**Last activity:** 2026-01-24 - Completed 06-01-PLAN.md (SEO Metadata & Sitemap)
 
 **Progress:**
 ```
-[████████████████████████████████████████░░] 97% (64/66 requirements)
+[██████████████████████████████████████████] 100% (70/70 requirements)
 ```
 
 **Phase Breakdown:**
@@ -38,13 +38,13 @@
 - Phase 3: Contact Form (8 requirements) - 8/8 complete (100%) ✓
 - Phase 4: Authentication & Admin Panel (17 requirements) - 17/17 complete (100%) ✓
 - Phase 5: Design & Animations (8 requirements) - 8/8 complete (100%) ✓
-- Phase 6: SEO & Deployment (11 requirements) - Pending
+- Phase 6: SEO & Deployment (11 requirements) - 6/11 complete (55%)
 
 ---
 
 ## Performance Metrics
 
-**Velocity:** 18 plans completed (15 min average)
+**Velocity:** 19 plans completed (14 min average)
 
 **Cycle Times:**
 - Planning → Execution: Immediate (autonomous plans)
@@ -66,12 +66,13 @@
 - Plan 05-01: 6 min (3 tasks, all auto)
 - Plan 05-02: 3 min (3 tasks, all auto)
 - Plan 05-03: 15 min (4 tasks + 1 human-verify checkpoint)
+- Plan 06-01: 8 min (3 tasks, all auto)
 
 **Quality Indicators:**
-- Requirements coverage: 66/66 mapped (100%)
+- Requirements coverage: 70/70 mapped (100%)
 - Blocked requirements: 0
 - Deferred scope: Automation phase (post-v1)
-- Plans executed: 18/18 (1 auto-fix for Next.js 16 compatibility, 2 orchestrator auth config fixes)
+- Plans executed: 19/19 (1 auto-fix for Next.js 16 compatibility, 2 orchestrator auth config fixes, 1 auto-fix for middleware SEO file access)
 
 ---
 
@@ -152,6 +153,12 @@
 | 2026-01-24 | Stack sections animate as units (not individual items) | Animating 9 architecture items + 8 pipeline steps individually = 17 simultaneous animations → jank. Sections maintain performance. |
 | 2026-01-24 | Resume sections use 100ms incremental delays | Highlights → Experience → Education → Skills with sequential delays create smooth top-to-bottom scroll reveal. |
 | 2026-01-24 | Header logo gets subtle 1.05x scale on hover | motion.div wrapper around Link with whileHover provides tactile feedback. 5% scale subtle enough for header element. |
+| 2026-01-24 | Root layout uses title template '%s \| Portfolio' | Creates consistent page titles. Home uses title: null to inherit default. Reduces metadata duplication. |
+| 2026-01-24 | All metadata URLs use placeholder 'https://yourdomain.com' | Environment-agnostic configuration. Will be replaced with production domain during deployment. |
+| 2026-01-24 | Dynamic routes use generateMetadata with Metadata return type | Project pages fetch data with fetchQuery in generateMetadata. Next.js 16 automatically memoizes fetch requests. |
+| 2026-01-24 | Project 404 pages return robots: { index: false } | Prevents search engines from indexing not-found pages. Improves SEO quality signals. |
+| 2026-01-24 | Sitemap fetches projects at build time from Convex | Uses lastModified from _creationTime for accurate timestamps. Static + dynamic entries pattern. |
+| 2026-01-24 | Middleware allows unauthenticated access to SEO files | /robots.txt and /sitemap.xml added to unauthenticatedPaths. Critical for search engine access. |
 
 ### Active Todos
 
@@ -175,6 +182,7 @@
 - [x] Complete 05-02-PLAN.md (WCAG AA Design Polish) - Done 2026-01-24
 - [x] Complete 05-03-PLAN.md (Apply Scroll Animations) - Done 2026-01-24
 - [x] Phase 5 Complete - Move to Phase 6 (SEO & Deployment)
+- [x] Complete 06-01-PLAN.md (SEO Metadata & Sitemap) - Done 2026-01-24
 
 ### Known Blockers
 
@@ -216,15 +224,22 @@ You're working on an automated personal portfolio website. The roadmap is comple
   - About strengths cards slide in from left sequentially
   - Stack and Resume sections with scroll reveals
   - Header logo hover animation (1.05x scale)
-- 18 SUMMARY.md files created documenting completion
-- Phase 5 verified (16/16 must-haves)
+- Plan 06-01: Implemented comprehensive SEO metadata
+  - Enhanced root layout with OpenGraph and Twitter Card config
+  - Added metadata to all 7 public pages (home, about, resume, projects, stack, contact)
+  - Dynamic metadata for project detail pages with generateMetadata
+  - Created dynamic sitemap.xml fetching published projects from Convex
+  - Created robots.txt blocking /admin/, /auth/, /api/ from indexing
+  - Fixed middleware to allow search engine access to SEO files
+- 19 SUMMARY.md files created documenting completion
+- Phase 6 in progress (6/11 SEO requirements complete)
 
 **What's Next:**
-Move to Phase 6 - SEO & Deployment (metadata, sitemap, OpenGraph, Vercel deployment).
+Continue Phase 6 - Vercel deployment configuration and production domain setup.
 
 **Key Files:**
 - `.planning/PROJECT.md` - Core value and constraints
-- `.planning/REQUIREMENTS.md` - 66 v1 requirements with traceability
+- `.planning/REQUIREMENTS.md` - 70 v1 requirements with traceability
 - `.planning/ROADMAP.md` - 6-phase delivery structure
 - `.planning/phases/01-foundation/01-01-SUMMARY.md` - Foundation setup results
 - `.planning/phases/01-foundation/01-02-SUMMARY.md` - Convex & layout results
@@ -243,6 +258,7 @@ Move to Phase 6 - SEO & Deployment (metadata, sitemap, OpenGraph, Vercel deploym
 - `.planning/phases/05-design-and-animations/05-01-SUMMARY.md` - Animation infrastructure with accessibility support
 - `.planning/phases/05-design-and-animations/05-02-SUMMARY.md` - Dark aesthetic refinement with WCAG AA compliance
 - `.planning/phases/05-design-and-animations/05-03-SUMMARY.md` - Scroll animations applied to all pages with stagger effects
+- `.planning/phases/06-seo-and-deployment/06-01-SUMMARY.md` - SEO metadata, sitemap, and robots.txt implementation
 - `convex/schema.ts` - Complete database schema with 4 tables and 5 indexes
 - `lib/validations/contact.ts` - Zod schema for contact form validation
 - `convex/convex.config.ts` - Convex app configuration with rate limiter registration
@@ -256,7 +272,9 @@ Move to Phase 6 - SEO & Deployment (metadata, sitemap, OpenGraph, Vercel deploym
 - `app/auth/callback/route.ts` - OAuth callback handler
 - `app/auth/sign-in/route.ts` - Sign-in redirect handler
 - `app/auth/sign-out/route.ts` - Sign-out handler
-- `app/layout.tsx` - Dark-themed root layout with Convex provider and Toaster
+- `app/layout.tsx` - Dark-themed root layout with Convex provider, Toaster, and SEO metadata
+- `app/sitemap.ts` - Dynamic sitemap with static pages + Convex-fetched projects
+- `app/robots.ts` - Search engine crawling rules blocking admin routes
 - `app/ConvexClientProvider.tsx` - AuthKitProvider + ConvexProviderWithAuth bridge for WorkOS auth
 - `app/admin/layout.tsx` - Admin shell with auth check, sidebar navigation, user info display (82 lines)
 - `app/admin/page.tsx` - Admin dashboard with portfolio stats and quick actions (109 lines)
@@ -295,7 +313,7 @@ Move to Phase 6 - SEO & Deployment (metadata, sitemap, OpenGraph, Vercel deploym
 - `app/globals.css` - WCAG AA compliant color palette with focus states and typography polish
 
 **Last session:** 2026-01-24
-**Stopped at:** Completed 05-03-PLAN.md (Apply Scroll Animations) - Phase 5 Complete
+**Stopped at:** Completed 06-01-PLAN.md (SEO Metadata & Sitemap) - Phase 6 In Progress
 **Resume file:** None
 
 ---
