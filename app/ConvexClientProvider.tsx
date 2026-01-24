@@ -3,33 +3,41 @@
 import { ConvexReactClient } from "convex/react";
 import { ConvexProviderWithAuth } from "convex/react";
 import { AuthKitProvider, useAuth, useAccessToken } from "@workos-inc/authkit-nextjs/components";
-import { ReactNode, useCallback, useMemo } from "react";
+import { ReactNode, useCallback, useRef, useEffect } from "react";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
 function useAuthFromAuthKit() {
   const { user, loading: isLoading } = useAuth();
-  const { getAccessToken, accessToken, loading: tokenLoading } = useAccessToken();
+  const { accessToken, loading: tokenLoading, error: tokenError } = useAccessToken();
 
   const loading = (isLoading ?? false) || (tokenLoading ?? false);
-  const authenticated = !!user && !loading;
+  // Must have both user AND valid accessToken to be authenticated
+  const authenticated = !!user && !!accessToken && !loading;
 
-  const fetchAccessToken = useCallback(async ({ forceRefreshToken }: { forceRefreshToken: boolean }): Promise<string | null> => {
-    // With eagerAuth enabled, getAccessToken() returns the token synchronously
-    // If available, use synchronous access; otherwise fall back to the async token
-    const syncToken = getAccessToken?.();
-    if (typeof syncToken === 'string') {
-      return syncToken;
+  // Use a ref to store the token for stable access across renders
+  const stableAccessToken = useRef<string | null>(null);
+
+  // Update the ref when we have a valid token and no error
+  useEffect(() => {
+    if (accessToken && !tokenError) {
+      stableAccessToken.current = accessToken;
     }
-    // Fall back to async token if available
-    return accessToken ?? null;
-  }, [getAccessToken, accessToken]);
+  }, [accessToken, tokenError]);
 
-  return useMemo(() => ({
+  const fetchAccessToken = useCallback(async (): Promise<string | null> => {
+    // Return the stable token if available and no error
+    if (stableAccessToken.current && !tokenError) {
+      return stableAccessToken.current;
+    }
+    return null;
+  }, [tokenError]);
+
+  return {
     isLoading: loading,
     isAuthenticated: authenticated,
     fetchAccessToken,
-  }), [loading, authenticated, fetchAccessToken]);
+  };
 }
 
 export function ConvexClientProvider({ children }: { children: ReactNode }) {
