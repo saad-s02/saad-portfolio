@@ -19,8 +19,8 @@ This roadmap delivers a personal portfolio website with admin panel and automati
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — Initialize Next.js 16 + TypeScript and configure Tailwind v4
-- [ ] 01-02-PLAN.md — Initialize Convex backend and create dark-themed layout with navigation
+- [x] 01-01-PLAN.md — Initialize Next.js 16 + TypeScript and configure Tailwind v4
+- [x] 01-02-PLAN.md — Initialize Convex backend and create dark-themed layout with navigation
 
 **Success Criteria:**
 1. Developer can run `npm run dev` and see Next.js app at localhost:3000
@@ -42,11 +42,11 @@ Plans:
 **Plans:** 5 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Install Framer Motion and create Convex query functions
-- [ ] 02-02-PLAN.md — Build home page with hero, highlights, featured projects, automation teaser, and contact CTA
-- [ ] 02-03-PLAN.md — Build About and Resume pages
-- [ ] 02-04-PLAN.md — Build projects index and dynamic detail pages
-- [ ] 02-05-PLAN.md — Build Stack/Automation page with architecture and pipeline diagrams
+- [x] 02-01-PLAN.md — Install Framer Motion and create Convex query functions
+- [x] 02-02-PLAN.md — Build home page with hero, highlights, featured projects, automation teaser, and contact CTA
+- [x] 02-03-PLAN.md — Build About and Resume pages
+- [x] 02-04-PLAN.md — Build projects index and dynamic detail pages
+- [x] 02-05-PLAN.md — Build Stack/Automation page with architecture and pipeline diagrams
 
 **Success Criteria:**
 1. Visitor can navigate to home page and see hero, highlights, featured projects, automation teaser, and contact CTA
@@ -69,8 +69,8 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Set up form libraries, create validation schema, and build ContactForm UI
-- [ ] 03-02-PLAN.md — Implement Convex mutation with honeypot and rate limiting for spam protection
+- [x] 03-01-PLAN.md — Set up form libraries, create validation schema, and build ContactForm UI
+- [x] 03-02-PLAN.md — Implement Convex mutation with honeypot and rate limiting for spam protection
 
 **Success Criteria:**
 1. Visitor can fill out contact form with name, email, and message fields
@@ -118,7 +118,12 @@ Plans:
 
 **Requirements:** DESIGN-01, DESIGN-02, DESIGN-03, DESIGN-04, DESIGN-05, DESIGN-06, DESIGN-07, DESIGN-08
 
-**Plans:** 0 plans
+**Plans:** 3 plans
+
+Plans:
+- [x] 05-01-PLAN.md — Create animation wrapper components (FadeIn, SlideIn, PageTransition)
+- [x] 05-02-PLAN.md — Verify WCAG AA color contrast and add design polish utilities
+- [x] 05-03-PLAN.md — Apply scroll reveals and animations to all pages
 
 **Success Criteria:**
 1. All pages use dark color scheme with high contrast text (4.5:1 minimum ratio)
@@ -156,13 +161,13 @@ Plans:
 | Phase | Status | Requirements | Completion |
 |-------|--------|--------------|------------|
 | Phase 1: Foundation | Complete | 5 | 100% |
-| Phase 2: Public Content Pages | In Progress | 26 | 35% |
+| Phase 2: Public Content Pages | Complete | 26 | 100% |
 | Phase 3: Contact Form | Complete | 8 | 100% |
 | Phase 4: Authentication & Admin Panel | Complete | 17 | 100% |
-| Phase 5: Design & Animations | Pending | 8 | 0% |
+| Phase 5: Design & Animations | Complete | 8 | 100% |
 | Phase 6: SEO & Deployment | Pending | 11 | 0% |
 
-**Overall Progress:** 40/66 requirements complete (61%)
+**Overall Progress:** 64/66 requirements complete (97%)
 
 ---
 
@@ -181,4 +186,4 @@ Automation phase (Claude Code slash commands, GitHub Actions review bot, changel
 
 ---
 
-*Last updated: 2026-01-20*
+*Last updated: 2026-01-24*

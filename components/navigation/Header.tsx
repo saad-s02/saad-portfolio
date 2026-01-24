@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { motion } from 'framer-motion'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -19,12 +20,17 @@ export function Header() {
     <header className="border-b border-gray-800 bg-gray-950 sticky top-0 z-50 backdrop-blur">
       <div className="container mx-auto px-4 py-4">
         <nav className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <Link
-            href="/"
-            className="text-xl font-bold text-white hover:text-gray-300 transition-colors"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
-            Portfolio
-          </Link>
+            <Link
+              href="/"
+              className="text-xl font-bold text-white hover:text-gray-300 transition-colors"
+            >
+              Portfolio
+            </Link>
+          </motion.div>
 
           <ul className="flex flex-wrap gap-4 md:gap-6">
             {navLinks.map((link) => {

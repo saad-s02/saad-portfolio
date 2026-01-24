@@ -1,3 +1,5 @@
+import { FadeIn } from "@/components/animations/FadeIn";
+
 export const metadata = {
   title: "Stack & Automation | Saad Siddiqui",
   description: "Technical architecture and automated development workflow using Claude Code, GitHub Actions, and CI/CD",
@@ -6,23 +8,26 @@ export const metadata = {
 export default function StackPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-16 pb-16">
-      <section>
-        <h1 className="text-4xl font-bold mb-6 text-gray-50">
-          Stack & Automation
-        </h1>
-        <p className="text-xl text-gray-400 leading-relaxed">
-          This portfolio demonstrates an end-to-end automated development workflow where
-          Claude Code handles everything from issue specification to pull request reviews,
-          CI validation, and deployment. Below is the technical architecture and automation
-          pipeline that powers this site.
-        </p>
-      </section>
+      <FadeIn>
+        <section>
+          <h1 className="text-4xl font-bold mb-6 text-gray-50">
+            Stack & Automation
+          </h1>
+          <p className="text-xl text-gray-400 leading-relaxed">
+            This portfolio demonstrates an end-to-end automated development workflow where
+            Claude Code handles everything from issue specification to pull request reviews,
+            CI validation, and deployment. Below is the technical architecture and automation
+            pipeline that powers this site.
+          </p>
+        </section>
+      </FadeIn>
 
       {/* Architecture Diagram */}
-      <section>
-        <h2 className="text-3xl font-bold mb-6 text-gray-50">Architecture</h2>
+      <FadeIn delay={0.1}>
+        <section>
+          <h2 className="text-3xl font-bold mb-6 text-gray-50">Architecture</h2>
 
-        <div className="bg-gray-900 rounded-lg p-8 border border-gray-800 space-y-8">
+          <div className="bg-gray-900 rounded-lg p-8 border border-gray-800 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Frontend */}
             <div className="text-center">
@@ -106,15 +111,17 @@ export default function StackPage() {
             deployment on merge, preview deployments for PRs, integrated Convex deploy.
           </p>
         </div>
-      </section>
+        </section>
+      </FadeIn>
 
       {/* Automation Pipeline */}
-      <section>
-        <h2 className="text-3xl font-bold mb-6 text-gray-50">
-          Automated Development Workflow
-        </h2>
+      <FadeIn delay={0.2}>
+        <section>
+          <h2 className="text-3xl font-bold mb-6 text-gray-50">
+            Automated Development Workflow
+          </h2>
 
-        <div className="bg-gray-900 rounded-lg p-8 border border-gray-800 space-y-6">
+          <div className="bg-gray-900 rounded-lg p-8 border border-gray-800 space-y-6">
           <div className="space-y-4">
             {[
               { step: "1. Issue", desc: "Create GitHub issue describing feature or bug" },
@@ -163,7 +170,8 @@ export default function StackPage() {
             summary. Loop prevention ensures bot commits don&apos;t trigger additional updates.
           </p>
         </div>
-      </section>
+        </section>
+      </FadeIn>
 
       {/* Why This Matters */}
       <section className="bg-gray-900 rounded-lg p-8 border border-gray-800">
