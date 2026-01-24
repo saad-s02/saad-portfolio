@@ -38,7 +38,8 @@
       "Bash(npx convex env:*)",
       "mcp__convex__envList",
       "Bash(npx convex:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "mcp__workos__workos_examples"
     ]
   }
 }
