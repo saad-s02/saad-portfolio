@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { fetchQuery, preloadQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 import { notFound } from "next/navigation";
@@ -16,13 +17,16 @@ export async function generateStaticParams() {
 }
 
 // Generate SEO metadata per project
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = await fetchQuery(api.projects.getBySlug, { slug });
 
   if (!project) {
     return {
       title: "Project Not Found",
+      robots: {
+        index: false,
+      },
     };
   }
 
@@ -33,6 +37,10 @@ export async function generateMetadata({ params }: Props) {
       title: project.title,
       description: project.summary,
       type: "article",
+      url: `https://saadsiddiqui.dev/projects/${slug}`,
+    },
+    alternates: {
+      canonical: `https://saadsiddiqui.dev/projects/${slug}`,
     },
   };
 }

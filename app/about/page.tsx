@@ -2,8 +2,17 @@ import { FadeIn } from "@/components/animations/FadeIn";
 import { SlideIn } from "@/components/animations/SlideIn";
 
 export const metadata = {
-  title: "About | Saad Siddiqui",
-  description: "Background, approach, and strengths in full-stack development and automation",
+  title: "About",
+  description: "Background, approach, and strengths in full-stack development and AI-assisted automation workflows. Building modern web applications that ship faster.",
+  openGraph: {
+    title: "About",
+    description: "Background, approach, and strengths in full-stack development and AI-assisted automation workflows.",
+    type: 'website',
+    url: 'https://saadsiddiqui.dev/about',
+  },
+  alternates: {
+    canonical: 'https://saadsiddiqui.dev/about',
+  },
 };
 
 export default function AboutPage() {

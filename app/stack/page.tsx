@@ -1,8 +1,17 @@
 import { FadeIn } from "@/components/animations/FadeIn";
 
 export const metadata = {
-  title: "Stack & Automation | Saad Siddiqui",
-  description: "Technical architecture and automated development workflow using Claude Code, GitHub Actions, and CI/CD",
+  title: "Stack & Automation",
+  description: "Technical architecture and automated development workflow using Claude Code, GitHub Actions, Next.js, Convex, and CI/CD. Issue to production in minutes.",
+  openGraph: {
+    title: "Stack & Automation",
+    description: "Technical architecture and automated development workflow using Claude Code, GitHub Actions, and CI/CD.",
+    type: 'website',
+    url: 'https://saadsiddiqui.dev/stack',
+  },
+  alternates: {
+    canonical: 'https://saadsiddiqui.dev/stack',
+  },
 };
 
 export default function StackPage() {

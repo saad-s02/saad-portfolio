@@ -89,19 +89,19 @@
 - [ ] **DESIGN-08**: prefers-reduced-motion support for accessibility
 
 ### SEO & Metadata
-- [ ] **SEO-01**: Each page has unique title tag
-- [ ] **SEO-02**: Each page has meta description
-- [ ] **SEO-03**: OpenGraph tags for social sharing (og:title, og:description, og:image)
-- [ ] **SEO-04**: sitemap.xml generated with all public pages
-- [ ] **SEO-05**: robots.txt configured to allow indexing
-- [ ] **SEO-06**: Canonical URLs set for all pages
+- [x] **SEO-01**: Each page has unique title tag
+- [x] **SEO-02**: Each page has meta description
+- [x] **SEO-03**: OpenGraph tags for social sharing (og:title, og:description, og:image)
+- [x] **SEO-04**: sitemap.xml generated with all public pages
+- [x] **SEO-05**: robots.txt configured to allow indexing
+- [x] **SEO-06**: Canonical URLs set for all pages
 
 ### Deployment
-- [ ] **DEPLOY-01**: Site deployed to Vercel with custom domain
-- [ ] **DEPLOY-02**: Convex backend deployed and connected to Vercel
-- [ ] **DEPLOY-03**: Environment variables configured (WorkOS keys, Convex URL)
-- [ ] **DEPLOY-04**: Automatic deployment on push to main branch
-- [ ] **DEPLOY-05**: Preview deployments created for pull requests
+- [x] **DEPLOY-01**: Site deployed to Vercel with custom domain
+- [x] **DEPLOY-02**: Convex backend deployed and connected to Vercel
+- [x] **DEPLOY-03**: Environment variables configured (WorkOS keys, Convex URL)
+- [x] **DEPLOY-04**: Automatic deployment on push to main branch
+- [x] **DEPLOY-05**: Preview deployments created for pull requests
 
 ## v2 Requirements
 
@@ -209,17 +209,17 @@ Deferred to post-v1 (automation phase).
 | DESIGN-06 | Phase 5 | Complete |
 | DESIGN-07 | Phase 5 | Complete |
 | DESIGN-08 | Phase 5 | Complete |
-| SEO-01 | Phase 6 | Pending |
-| SEO-02 | Phase 6 | Pending |
-| SEO-03 | Phase 6 | Pending |
-| SEO-04 | Phase 6 | Pending |
-| SEO-05 | Phase 6 | Pending |
-| SEO-06 | Phase 6 | Pending |
-| DEPLOY-01 | Phase 6 | Pending |
-| DEPLOY-02 | Phase 6 | Pending |
-| DEPLOY-03 | Phase 6 | Pending |
-| DEPLOY-04 | Phase 6 | Pending |
-| DEPLOY-05 | Phase 6 | Pending |
+| SEO-01 | Phase 6 | Complete |
+| SEO-02 | Phase 6 | Complete |
+| SEO-03 | Phase 6 | Complete |
+| SEO-04 | Phase 6 | Complete |
+| SEO-05 | Phase 6 | Complete |
+| SEO-06 | Phase 6 | Complete |
+| DEPLOY-01 | Phase 6 | Complete |
+| DEPLOY-02 | Phase 6 | Complete |
+| DEPLOY-03 | Phase 6 | Complete |
+| DEPLOY-04 | Phase 6 | Complete |
+| DEPLOY-05 | Phase 6 | Complete |
 
 **Coverage:**
 - v1 requirements: 66 total

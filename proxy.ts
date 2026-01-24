@@ -12,6 +12,8 @@ export default authkitMiddleware({
       '/stack',
       '/contact',
       '/auth/:path*',
+      '/robots.txt',
+      '/sitemap.xml',
     ],
   },
   // Enable synchronous access token availability for Convex integration
