@@ -1,20 +1,50 @@
-import { FadeIn } from "@/components/animations/FadeIn";
+"use client";
+
+import { TextReveal } from "@/components/animations/TextReveal";
+import { motion } from "framer-motion";
 
 export function HeroSection() {
   return (
-    <section className="min-h-[60vh] flex flex-col justify-center">
-      <FadeIn>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gray-50">
+    <section className="min-h-[60vh] flex flex-col justify-center relative overflow-hidden">
+      {/* Subtle animated background gradient */}
+      <div className="absolute inset-0 -z-10">
+        <div className="hero-gradient-1" />
+        <div className="hero-gradient-2" />
+      </div>
+
+      <div className="relative z-10">
+        <TextReveal
+          as="h1"
+          className="text-5xl md:text-7xl font-bold mb-6 text-gray-50"
+          delay={0}
+          staggerDelay={0.08}
+        >
           Saad Siddiqui
-        </h1>
-        <p className="text-2xl md:text-3xl text-gray-400 mb-4">
-          Full-Stack Engineer
-        </p>
-        <p className="text-xl text-gray-500 max-w-2xl">
-          Building automated workflows that ship faster and scale confidently.
-          Specializing in Next.js, TypeScript, and AI-assisted development.
-        </p>
-      </FadeIn>
+        </TextReveal>
+
+        <TextReveal
+          as="p"
+          className="text-2xl md:text-3xl text-gray-400 mb-4"
+          delay={0.3}
+          staggerDelay={0.06}
+        >
+          Full-Stack Software Engineer
+        </TextReveal>
+
+        <motion.p
+          className="text-xl text-gray-500 max-w-2xl"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.6,
+            duration: 0.5,
+            ease: [0.25, 0.1, 0.25, 1],
+          }}
+        >
+          Building AI-powered applications and scalable production systems.
+          Specializing in full-stack development, LLMs, and enterprise tooling.
+        </motion.p>
+      </div>
     </section>
   );
 }

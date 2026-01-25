@@ -39,7 +39,17 @@
       "mcp__convex__envList",
       "Bash(npx convex:*)",
       "Bash(dir:*)",
-      "mcp__workos__workos_examples"
+      "mcp__workos__workos_examples",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_console_messages",
+      "mcp__playwright__browser_resize",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_press_key",
+      "mcp__playwright__browser_hover",
+      "mcp__playwright__browser_close",
+      "Skill(frontend-design)"
     ]
   }
 }

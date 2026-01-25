@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ConvexClientProvider } from './ConvexClientProvider'
 import { Header } from '@/components/navigation/Header'
+import { Footer } from '@/components/navigation/Footer'
 import { Toaster } from 'react-hot-toast'
 import './globals.css'
 
@@ -31,12 +32,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className="bg-gray-950 text-gray-50 antialiased min-h-screen">
+      <body className="bg-gray-950 text-gray-50 antialiased min-h-screen flex flex-col">
         <ConvexClientProvider>
           <Header />
-          <main className="container mx-auto px-4 py-8">
+          <main className="container mx-auto px-4 py-8 flex-1">
             {children}
           </main>
+          <Footer />
           <Toaster
             position="bottom-right"
             toastOptions={{

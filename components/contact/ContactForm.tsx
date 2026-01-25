@@ -72,16 +72,18 @@ export function ContactForm() {
         <label htmlFor="name" className="block text-sm font-medium text-gray-300">
           Name <span className="text-red-400">*</span>
         </label>
-        <input
-          id="name"
-          type="text"
-          {...register("name")}
-          disabled={isSubmitting}
-          aria-invalid={errors.name ? "true" : "false"}
-          aria-describedby={errors.name ? "name-error" : undefined}
-          className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-          placeholder="Your name"
-        />
+        <div className="focus-ring-pulse">
+          <input
+            id="name"
+            type="text"
+            {...register("name")}
+            disabled={isSubmitting}
+            aria-invalid={errors.name ? "true" : "false"}
+            aria-describedby={errors.name ? "name-error" : undefined}
+            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+            placeholder="Your name"
+          />
+        </div>
         {errors.name && (
           <p id="name-error" role="alert" className="text-sm text-red-400">
             {errors.name.message}
@@ -94,16 +96,18 @@ export function ContactForm() {
         <label htmlFor="email" className="block text-sm font-medium text-gray-300">
           Email <span className="text-red-400">*</span>
         </label>
-        <input
-          id="email"
-          type="email"
-          {...register("email")}
-          disabled={isSubmitting}
-          aria-invalid={errors.email ? "true" : "false"}
-          aria-describedby={errors.email ? "email-error" : undefined}
-          className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
-          placeholder="your.email@example.com"
-        />
+        <div className="focus-ring-pulse">
+          <input
+            id="email"
+            type="email"
+            {...register("email")}
+            disabled={isSubmitting}
+            aria-invalid={errors.email ? "true" : "false"}
+            aria-describedby={errors.email ? "email-error" : undefined}
+            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+            placeholder="your.email@example.com"
+          />
+        </div>
         {errors.email && (
           <p id="email-error" role="alert" className="text-sm text-red-400">
             {errors.email.message}
@@ -116,16 +120,18 @@ export function ContactForm() {
         <label htmlFor="message" className="block text-sm font-medium text-gray-300">
           Message <span className="text-red-400">*</span>
         </label>
-        <textarea
-          id="message"
-          rows={6}
-          {...register("message")}
-          disabled={isSubmitting}
-          aria-invalid={errors.message ? "true" : "false"}
-          aria-describedby={errors.message ? "message-error" : undefined}
-          className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-y"
-          placeholder="Your message..."
-        />
+        <div className="focus-ring-pulse">
+          <textarea
+            id="message"
+            rows={6}
+            {...register("message")}
+            disabled={isSubmitting}
+            aria-invalid={errors.message ? "true" : "false"}
+            aria-describedby={errors.message ? "message-error" : undefined}
+            className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed resize-y"
+            placeholder="Your message..."
+          />
+        </div>
         {errors.message && (
           <p id="message-error" role="alert" className="text-sm text-red-400">
             {errors.message.message}
