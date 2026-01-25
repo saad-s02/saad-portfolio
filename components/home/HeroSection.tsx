@@ -1,16 +1,31 @@
 "use client";
 
 import { TextReveal } from "@/components/animations/TextReveal";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 export function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Track scroll progress of the hero section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Fade out gradients as user scrolls past the hero
+  const gradientOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.6, 0]);
+
   return (
-    <section className="min-h-[60vh] flex flex-col justify-center relative overflow-hidden">
-      {/* Subtle animated background gradient */}
-      <div className="absolute inset-0 -z-10">
+    <section ref={sectionRef} className="min-h-[60vh] flex flex-col justify-center relative">
+      {/* Full-width animated background gradient with scroll-based fade */}
+      <motion.div
+        className="fixed inset-0 -z-10 pointer-events-none"
+        style={{ opacity: gradientOpacity }}
+      >
         <div className="hero-gradient-1" />
         <div className="hero-gradient-2" />
-      </div>
+      </motion.div>
 
       <div className="relative z-10">
         <TextReveal

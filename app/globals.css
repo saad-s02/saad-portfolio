@@ -72,10 +72,10 @@
 @layer components {
   .hero-gradient-1 {
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: -20%;
+    left: -10%;
+    width: 120%;
+    height: 140%;
     background: radial-gradient(
       ellipse at center,
       rgba(59, 130, 246, 0.15) 0%,
@@ -88,10 +88,10 @@
 
   .hero-gradient-2 {
     position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
+    top: -20%;
+    right: -10%;
+    width: 120%;
+    height: 140%;
     background: radial-gradient(
       ellipse at center,
       rgba(139, 92, 246, 0.12) 0%,
