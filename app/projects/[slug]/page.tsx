@@ -3,10 +3,14 @@ import { fetchQuery, preloadQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+// Enable ISR - revalidate every hour (3600 seconds)
+export const revalidate = 3600;
 
 // Generate static params for build-time rendering
 export async function generateStaticParams() {
@@ -91,7 +95,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         <section>
           <h2 className="text-2xl font-bold mb-4 text-gray-50">Problem</h2>
           <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed">
-            {sections.problem}
+            <ReactMarkdown>{sections.problem}</ReactMarkdown>
           </div>
         </section>
       )}
@@ -100,7 +104,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         <section>
           <h2 className="text-2xl font-bold mb-4 text-gray-50">Approach</h2>
           <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed">
-            {sections.approach}
+            <ReactMarkdown>{sections.approach}</ReactMarkdown>
           </div>
         </section>
       )}
@@ -109,7 +113,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         <section>
           <h2 className="text-2xl font-bold mb-4 text-gray-50">Constraints</h2>
           <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed">
-            {sections.constraints}
+            <ReactMarkdown>{sections.constraints}</ReactMarkdown>
           </div>
         </section>
       )}
@@ -118,7 +122,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         <section>
           <h2 className="text-2xl font-bold mb-4 text-gray-50">Impact</h2>
           <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed">
-            {sections.impact}
+            <ReactMarkdown>{sections.impact}</ReactMarkdown>
           </div>
         </section>
       )}
@@ -127,8 +131,8 @@ export default async function ProjectDetailPage({ params }: Props) {
       {!sections.problem && !sections.approach && project.content && (
         <section>
           <h2 className="text-2xl font-bold mb-4 text-gray-50">Details</h2>
-          <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed whitespace-pre-wrap">
-            {project.content}
+          <div className="prose prose-invert max-w-none text-gray-300 leading-relaxed">
+            <ReactMarkdown>{project.content}</ReactMarkdown>
           </div>
         </section>
       )}
