@@ -8,6 +8,9 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+// Enable ISR - revalidate every hour (3600 seconds)
+export const revalidate = 3600;
+
 // Generate static params for build-time rendering
 export async function generateStaticParams() {
   const projects = await fetchQuery(api.projects.listPublished);

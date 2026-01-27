@@ -3,6 +3,9 @@ import { preloadQuery } from "convex/nextjs";
 import { api } from "@/convex/_generated/api";
 import { ProjectGrid } from "@/components/projects/ProjectGrid";
 
+// Enable ISR - revalidate every hour (3600 seconds)
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Projects",
   description: "Portfolio of web applications, automation workflows, and engineering projects built with Next.js, TypeScript, and modern web technologies.",
